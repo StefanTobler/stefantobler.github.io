@@ -1,0 +1,20 @@
+# section information
+section:
+  name: Achievements
+  enable: true
+  weight: 6
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your achievements achievements
+achievements:
+- title: NCL Spring 2020 Top 200
+  image: images/achievements/ncl-icon.png
+  summary: Placed 44 out of 5379 in the preseason and 174 out of 5357 in the individual game. Click [here](https://cyberskyline.com/report/20AUDBL9URCV) to see my scouting report!
+- title: Rotary Scholarship Recipient
+  image: images/achievements/rotary.png
+  summary: Recipients are selected on the basis of scholarship, leadership, community service and other demonstration of personal character. Only 4 to 6 students are selected each year.
+- title: UGA Honors Program
+  image: images/achievements/honors.png
+  summary: An organization comprised of the most academically rigorous students at the University of Georgia who are committed to academics and the betterment of the community.

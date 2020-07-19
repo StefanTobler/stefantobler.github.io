@@ -1,0 +1,54 @@
+# section information
+section:
+  name: Experiences
+  enable: true
+  weight: 3
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# Your experiences
+experiences:
+- company:
+    name: UGA Society of Cyber Security
+    url: "https://ugascs.com/"
+    location: Athens, Georgia
+    # company overview
+    overview: UGA SCS is a student organization for those interested in cyber security.
+  positions:
+  - designation: Cyber Team Vice President
+    start: Jan 2020
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Seek out and organize cyber team events.
+    - Gather and present resources to new club members trying to learn more about cyber security. 
+    - Encourage members to actively participate in CTF challenges and pen-testing labs such as [Hack the Box](https://www.hackthebox.eu/).
+
+- company:
+    name: UGAHacks 
+    url: "https://www.ugahacks.com/"
+    location: Athens, Georgia
+    overview: UGAHacks is a student run hackathon which hosts over 650 students at a 48 hour coding competition! We will be holding our 6th annual hackthon spring 2021.
+  positions:
+  - designation: Logistics Coordinator
+    start: April 2019
+    responsibilities:
+    - Coordinate catering options to feed over 650 attendees.
+    - Organize time slots for workshop hosts during the main event.
+    - Schedule shuttle transportation for out of city participants.
+
+- company:
+    name: University of Georgia Department of Computer Science
+    url: "https://www.cs.uga.edu/"
+    location: Athens, Georgia
+    overview: Intern counting Company (ICC) is responsible for counting worldwide intern Engineers.
+  positions:
+  - designation: Teaching Assistant for Software Development
+    start: Jan 2020
+    end: May 2020
+    responsibilities:
+    - Engage with 5+ students each week seeking assistance with course material.
+    - Developed auto-grading scripts using Bash and JUnit.
+    - Communicated core Java development principals to other undergraduate students.

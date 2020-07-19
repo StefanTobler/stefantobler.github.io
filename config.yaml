@@ -27,7 +27,7 @@ params:
   background: "images/background.jpg"
 
   # GitHub repo URL of your site
-  gitRepo: https://github.com/hossainemruz/toha-example-site
+  gitRepo: https://github.com/StefanTobler/stefantobler.github.io
 
   # specify whether you want to write blog post or not
   enableBlogPost: true
@@ -35,20 +35,19 @@ params:
   # specify the list of custom menus that you want to show in the top navbar.
   # they will be separated by a divider from the main menus.
   customMenus:
-  - name: Notes
-    url: https://hossainnotes.netlify.app/docs/example/
+  # - name: Notes
+  #   url: https://hossainnotes.netlify.app/docs/example/
 
   # some information about you
   author:
-    name: "Jane Doe"
-    nickname: "Jane"
-    image: "images/avatar.png"
+    name: "Stefan Tobler"
+    nickname: "Stefan"
+    image: "images/avatar.jpg"
     # give your some contact information. they will be used in the footer
     contactInfo:
-      email: "janedoe@example.com"
-      phone: "+0123456789"
+      email: "stefan.tobler@uga.edu"
     # a summary of what you do
     summary:
-    - I am a Developer
-    - I work with Go
-    - I love to work with some fun projects
+    - I am a student
+    - I am a hacker
+    - I thrive to learn
