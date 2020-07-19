@@ -4,7 +4,12 @@ date: 2020-05-26
 hero: /images/posts/try-hack-me/blue.gif
 categories:
 - "try-hack-me"
+tags:
+- windows
+- metasploit
+- eternal blue
 ---
+# Blue
 
 ## Tools
 

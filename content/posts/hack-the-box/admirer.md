@@ -1,10 +1,18 @@
 ---
 title: Admirer
-date: 2020-04-14T20:20:40+06:00
+date: 2020-06-11
 hero: /images/posts/hack-the-box/admirer.png
 categories:
-- "hack-the-box"
+- hack-the-box
+tags:
+- linux
+- adminer
+- database
+- mysql
+- python escalation
 ---
+
+# Admirer
 
 ```
 export IP=10.10.10.187

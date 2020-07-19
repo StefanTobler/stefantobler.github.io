@@ -1,0 +1,10 @@
+{{ define "main" }}
+  {{ range first 999 (where site.RegularPages.ByDate.Reverse "Type" "in" site.Params.mainSections )}}
+        {{ partial "cards/post-list.html" . }}
+      {{ end }}
+  {{ template "_internal/pagination.html" . }}
+{{ end }}
+
+{{ define "toc" }}
+  {{ partial "docs/taxonomy" . }}
+{{ end }}

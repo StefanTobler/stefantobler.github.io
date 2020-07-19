@@ -23,7 +23,7 @@
         $('#navbar-toggler').removeClass('navbar-light');
         $('#navbar-toggler').addClass('navbar-dark');
 
-        $('#logo').attr("src","assets/images/logo-inverted.png");
+        $('#logo').attr("src","assets/images/logo-transparent.png");
       }
     });
   });
