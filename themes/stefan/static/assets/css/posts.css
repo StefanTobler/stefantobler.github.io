@@ -227,7 +227,9 @@
 }
 
 .card-title {
-	margin-bottom: .75rem
+	font-size: x-large;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
 .card-subtitle {
