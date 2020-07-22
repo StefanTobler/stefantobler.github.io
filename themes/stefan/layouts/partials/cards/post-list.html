@@ -6,6 +6,7 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ .Title }}</h5>
+        {{ partial "docs/post-meta" . }}
         <p class="card-text post-summary"> {{ .Summary }}</p>
       </div>
       <div class="card-footer">
