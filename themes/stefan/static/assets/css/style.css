@@ -168,6 +168,8 @@ img.right{
   z-index: 9999;
 }
 
+
+
 .footer h5 {
   color: #c0ccda;
 }
@@ -215,6 +217,13 @@ img.right{
 .footer #theme img {
   width: 32px;
 }
+
+.footer #hugo:hover {
+  margin-right: 5px;
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+}
+
 
 /* --- FOOTER END ---- */
 

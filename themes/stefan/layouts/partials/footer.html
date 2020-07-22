@@ -1,5 +1,5 @@
-<footer class="container-fluid text-center align-content-center footer pb-2">
-  <div class="container pt-5">
+<footer class="container-fluid text-center align-content-center footer pb-2 pt-2">
+  <!-- <div class="container pt-5">
     <div class="row text-left">
       <div class="col-md-4 col-sm-12">
         <h5>Navigation</h5>
@@ -25,7 +25,7 @@
         </ul>
       </div>
       <div class="col-md-4 col-sm-12">
-        <!-- <h5>Newsletter</h5> -->
+        <h5>Newsletter</h5> 
         <p>Stay up to date with email notification</p>
         <form>
           <div class="form-group">
@@ -45,7 +45,7 @@
       </div>
     </div>
   </div>
-  <hr />
+  <hr /> -->
   <div class="container">
     <div class="row text-left">
       <div class="col-md-4">
@@ -54,9 +54,9 @@
           Toha
         </a>
       </div>
-      <div class="col-md-4">{{ if .Site.Params.copyright }}{{ .Site.Params.copyright }}{{ else }}© 2020 Copyright.{{ end }}</div>
-      <div class="col-md-4">
-        Powered by <a href="https://gohugo.io/">Hugo
+      <div class="col-md-4 text-center">{{ if .Site.Params.copyright }}{{ .Site.Params.copyright }}{{ else }}© 2020 Copyright.{{ end }}</div>
+      <div class="col-md-4 text-right">
+        <a id="hugo" href="https://gohugo.io/">Powered by Hugo
         <img
           src="/assets/images/hugo-logo-wide.svg"
           alt="Hugo Logo"
