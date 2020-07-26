@@ -28,4 +28,5 @@ skills:
 
 - name: C++
   icon: "images/skills/c++.png"
-  summary: "Know basic C/C++ programming. Experience decompiling binaries with Ghidra and analyzing code."
+  summary: "Know C/C++ programming. Experience decompiling binaries with Ghidra and analyzing code."
+

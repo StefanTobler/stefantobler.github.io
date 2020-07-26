@@ -9,7 +9,6 @@ tags:
 - metasploit
 - eternal blue
 ---
-# Blue
 
 ## Tools
 
