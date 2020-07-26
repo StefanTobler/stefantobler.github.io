@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>privesc on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/privesc/</link>
+    <description>Recent content in privesc on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/tags/privesc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Pentesting</title>
+      <link>https://stefantobler.com/posts/try-hack-me/basic_pentesting/</link>
+      <pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/basic_pentesting/</guid>
+      <description>Tools #   nmap gobuster  Walkthrough #  First things first let&amp;rsquo;s scan the box. I used the command nmap -sV -sS $IP and redirected the output to the file nmap/nmap.txt. It looks like there is an http server on this box. Let&amp;rsquo;s try and connect to it to see if it is actually accessible. Doesn&amp;rsquo;t look like we can access it. Let&amp;rsquo;s run a gobuster scan on the domain to just see if we can access any other pages.</description>
+    </item>
+    
+    <item>
+      <title>Vulnversity</title>
+      <link>https://stefantobler.com/posts/try-hack-me/vulnversity/</link>
+      <pubDate>Wed, 13 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/vulnversity/</guid>
+      <description>Tools #   nmap gobuster  Walkthrough #  export IP=10.10.22.134 [Task 2] #  This task is centered around using nmap. A port scanner that can give us information from what ports are open on a host, to the software running on those open ports. For this box we are using the IP 10.10.22.134, and to conduct our nmap scan we can use the command nmap -sV -A -v 10.</description>
+    </item>
+    
+  </channel>
+</rss>

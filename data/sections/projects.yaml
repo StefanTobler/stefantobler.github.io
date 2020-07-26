@@ -1,0 +1,56 @@
+# section information
+section:
+  name: Projects
+  enable: true
+  weight: 4
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true 
+
+# filter buttons
+# buttons:
+# - name: All
+#   filter: "all"
+# - name: Professional
+#   filter: "professional"
+# - name: Academic
+#   filter: "academic"
+# - name: Hobby
+#   filter: "hobby"
+
+# your projects
+projects:
+- name: 8-Bit Computer
+  logo: images/projects/8bit.jpg
+  timeline: "Fall 2019"
+  url: "https://eater.net/8bit/"
+  summary: I built an 8-bit computer at the binary level using simple logic gates and breadboards.
+  tags: ["logic", "computer", "microelectronics"]
+
+- name: ToblerHacks
+  timeline: "Feb 2020"
+  repo: https://github.com/StefanTobler/toblerhacks
+  summary: A parody hackathon website that was going to be hosted for my friends and I to develop something awesome.
+  tags: ["web-dev","hackathon"]
+
+- name: Snakey
+  timeline: "Apr 2018 - Aug 2018"
+  repo: "https://github.com/StefanTobler/Snakey"
+  summary: My version of the game Snake. Written in Python using the PyGame library, I added various game textures, highscores, and challenges as well as XBOX gamepad support.
+  tags: ["game-dev","python"]
+
+- name: Hack the Box
+  logo: images/projects/htb.png
+  role: Hacker
+  timeline: "Jun 2020 - Present"
+  url: "https://www.hackthebox.eu/profile/261450"
+  summary: Actively learning to enumerate machines, exploit misconfigurations and escalate priviledges.
+  tags: ["hacking", "pen-testing", "kali-linux", "education"]
+
+- name: Try Hack Me
+  logo: images/projects/thm.png
+  role: Hacker
+  timeline: "May 2020 - Present"
+  url: "https://tryhackme.com/p/evernbro"
+  summary: Learning about tools and techniques for penetration testing using Kali Linux.
+  tags: ["hacker","tools","education", "kali-linux"]

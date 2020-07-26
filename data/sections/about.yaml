@@ -1,0 +1,72 @@
+# section information
+section:
+  name: About
+  enable: true
+  weight: 1
+  showOnNavbar: true
+
+# your designation
+designation: Cyber Team Vice President
+# your company information
+company:
+  name: UGA Society of Cyber Security
+  url: "https://ugascs.com/"
+
+# your resume. this file path should be relative to you "static" directory
+resume: "files/resume.pdf"
+
+# a summary about you
+summary: 'I am a passionate cyber security student graduating in the Spring of 2021 with a BS in Computer Science. In my free time I enjoy tackling Hack the Box machines and learning about new security technologies. I am seeking opportunities in the cyber security field.'
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Email
+  icon: "fas fa-envelope"
+  url: "stefan.tobler@uga.edu"
+
+- name: Github
+  icon: "fab fa-github"
+  url: "https://www.github.com/stefantobler"
+
+- name: LinkedIn
+  icon: "fab fa-linkedin"
+  url: "https://linkedin.com/in/stefantobler"
+
+- name: Twitter
+  icon: "fab fa-twitter"
+  url: "https://twitter.com/stefantobler"
+
+- name: "Hack the Box"
+  icon: "fas fa-cube"
+  url: "https://www.hackthebox.eu/profile/261450"
+
+# your soft skills
+# give the percentage between 50 to 100 with 5 intervals.
+# currently supported colors: blue, yellow, pink, green, sky, orange
+softSkills:
+- name: Leadership
+  percentage: 100
+  color: blue
+- name: Team Work
+  percentage: 100
+  color: yellow
+- name: Communication
+  percentage: 100
+  color: pink
+- name: Hard Working
+  percentage: 100
+  color: green
+- name: Fast Learner
+  percentage: 100
+  color: sky
+- name: Problem Solving
+  percentage: 100
+  color: orange
+# you can also provide color code instead of pre-defined color name
+# - name: Example 1
+#   percentage: 75
+#   color: "#00adb5"
+# - name: Example 2
+#   percentage: 65
+#   color: "#8b8383"

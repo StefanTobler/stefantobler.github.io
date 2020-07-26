@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mimikatz on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/mimikatz/</link>
+    <description>Recent content in mimikatz on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/tags/mimikatz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ice</title>
+      <link>https://stefantobler.com/posts/try-hack-me/ice/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/ice/</guid>
+      <description>Tools #   nmap metasploit  Walkthrough #  First things first. Nmap scan. I used the command sudo nmap -sV -A -sS $IP then piped the output to nmap/nmap.txt. From the results it looks like there is a webserver open on port 8000 and port 5357. On port 800 there is an interesting software called Icecast running. Let&amp;rsquo;s do some research about this. It looks like Icecast is a software that allows a computer to be a media server.</description>
+    </item>
+    
+  </channel>
+</rss>

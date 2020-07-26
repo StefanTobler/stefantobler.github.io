@@ -1,0 +1,10 @@
+{{ define "main" }}
+  {{ range sort .Paginator.Pages }}
+  {{ partial "cards/post-list.html" . }}
+  {{ end }}
+  {{ template "_internal/pagination.html" . }}
+{{ end }}
+
+{{ define "toc" }}
+  {{ partial "docs/taxonomy" . }}
+{{ end }}
