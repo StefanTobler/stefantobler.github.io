@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>webappsec on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/webappsec/</link>
+    <description>Recent content in webappsec on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/tags/webappsec/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vulnversity</title>
+      <link>https://stefantobler.com/posts/try-hack-me/vulnversity/</link>
+      <pubDate>Wed, 13 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/vulnversity/</guid>
+      <description>Tools #   nmap gobuster  Walkthrough #  export IP=10.10.22.134 [Task 2] #  This task is centered around using nmap. A port scanner that can give us information from what ports are open on a host, to the software running on those open ports. For this box we are using the IP 10.10.22.134, and to conduct our nmap scan we can use the command nmap -sV -A -v 10.</description>
+    </item>
+    
+  </channel>
+</rss>

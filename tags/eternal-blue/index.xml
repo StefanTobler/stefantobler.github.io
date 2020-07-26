@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>eternal blue on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/eternal-blue/</link>
+    <description>Recent content in eternal blue on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/tags/eternal-blue/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blue</title>
+      <link>https://stefantobler.com/posts/try-hack-me/blue/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/blue/</guid>
+      <description>Tools #   metasploit nmap  Walkthrough #  First things first. Let&amp;rsquo;s conduct a scan on the box using the command nmap -sS -sV -A $IP and pipe the output to the file nmap_out.txt. You can review the scan results there. Looking at the results the machine is running Windows 7 Professional 7601. If we google this version number we can find out that this version might be vulnerable to the &amp;ldquo;EternalBlue&amp;rdquo; (MS17-010) vulnerability.</description>
+    </item>
+    
+  </channel>
+</rss>
