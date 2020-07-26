@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>try-hack-me on Stefan Tobler</title>
+    <link>https://stefantobler.com/categories/try-hack-me/</link>
+    <description>Recent content in try-hack-me on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/categories/try-hack-me/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Pentesting</title>
+      <link>https://stefantobler.com/posts/try-hack-me/basic_pentesting/</link>
+      <pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/basic_pentesting/</guid>
+      <description>Tools #   nmap gobuster  Walkthrough #  First things first let&amp;rsquo;s scan the box. I used the command nmap -sV -sS $IP and redirected the output to the file nmap/nmap.txt. It looks like there is an http server on this box. Let&amp;rsquo;s try and connect to it to see if it is actually accessible. Doesn&amp;rsquo;t look like we can access it. Let&amp;rsquo;s run a gobuster scan on the domain to just see if we can access any other pages.</description>
+    </item>
+    
+    <item>
+      <title>Blue</title>
+      <link>https://stefantobler.com/posts/try-hack-me/blue/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/blue/</guid>
+      <description>Tools #   metasploit nmap  Walkthrough #  First things first. Let&amp;rsquo;s conduct a scan on the box using the command nmap -sS -sV -A $IP and pipe the output to the file nmap_out.txt. You can review the scan results there. Looking at the results the machine is running Windows 7 Professional 7601. If we google this version number we can find out that this version might be vulnerable to the &amp;ldquo;EternalBlue&amp;rdquo; (MS17-010) vulnerability.</description>
+    </item>
+    
+    <item>
+      <title>Ice</title>
+      <link>https://stefantobler.com/posts/try-hack-me/ice/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/ice/</guid>
+      <description>Tools #   nmap metasploit  Walkthrough #  First things first. Nmap scan. I used the command sudo nmap -sV -A -sS $IP then piped the output to nmap/nmap.txt. From the results it looks like there is a webserver open on port 8000 and port 5357. On port 800 there is an interesting software called Icecast running. Let&amp;rsquo;s do some research about this. It looks like Icecast is a software that allows a computer to be a media server.</description>
+    </item>
+    
+    <item>
+      <title>Vulnversity</title>
+      <link>https://stefantobler.com/posts/try-hack-me/vulnversity/</link>
+      <pubDate>Wed, 13 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/vulnversity/</guid>
+      <description>Tools #   nmap gobuster  Walkthrough #  export IP=10.10.22.134 [Task 2] #  This task is centered around using nmap. A port scanner that can give us information from what ports are open on a host, to the software running on those open ports. For this box we are using the IP 10.10.22.134, and to conduct our nmap scan we can use the command nmap -sV -A -v 10.</description>
+    </item>
+    
+    <item>
+      <title>Shodan.io</title>
+      <link>https://stefantobler.com/posts/try-hack-me/shodan.io/</link>
+      <pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/shodan.io/</guid>
+      <description>Tools #   Shodan.io Ultratools ASN Search  Walkthrough #  [Task 2] Getting Started #  To solve task 2 read task_1_introduction.md, it is the article that was provided by THM and outlines how to search for ASNs using ultratools then using the ASN:[asn] filter on Shodan.io.
+First things first. In order to find out google.com&amp;rsquo;s ip address we can use the ping command. This command just sends a little packet of data to google.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nmap on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/nmap/</link>
+    <description>Recent content in nmap on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/tags/nmap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Pentesting</title>
+      <link>https://stefantobler.com/posts/try-hack-me/basic_pentesting/</link>
+      <pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/basic_pentesting/</guid>
+      <description>Tools #   nmap gobuster  Walkthrough #  First things first let&amp;rsquo;s scan the box. I used the command nmap -sV -sS $IP and redirected the output to the file nmap/nmap.txt. It looks like there is an http server on this box. Let&amp;rsquo;s try and connect to it to see if it is actually accessible. Doesn&amp;rsquo;t look like we can access it. Let&amp;rsquo;s run a gobuster scan on the domain to just see if we can access any other pages.</description>
+    </item>
+    
+    <item>
+      <title>Ice</title>
+      <link>https://stefantobler.com/posts/try-hack-me/ice/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/ice/</guid>
+      <description>Tools #   nmap metasploit  Walkthrough #  First things first. Nmap scan. I used the command sudo nmap -sV -A -sS $IP then piped the output to nmap/nmap.txt. From the results it looks like there is a webserver open on port 8000 and port 5357. On port 800 there is an interesting software called Icecast running. Let&amp;rsquo;s do some research about this. It looks like Icecast is a software that allows a computer to be a media server.</description>
+    </item>
+    
+  </channel>
+</rss>
