@@ -17,7 +17,7 @@
       <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
       
       <guid>https://stefantobler.com/posts/try-hack-me/ice/</guid>
-      <description>Tools #   nmap metasploit  Walkthrough #  First things first. Nmap scan. I used the command sudo nmap -sV -A -sS $IP then piped the output to nmap/nmap.txt. From the results it looks like there is a webserver open on port 8000 and port 5357. On port 800 there is an interesting software called Icecast running. Let&amp;rsquo;s do some research about this. It looks like Icecast is a software that allows a computer to be a media server.</description>
+      <description>Ice is the extension to the Blue room. In this room we learn more about windows recon, exploitation and escalation. This box uses a vulnerable service called Icecast which allows us to access the machine using metasploit, then elevate those privileges by abusing a spool process.</description>
     </item>
     
   </channel>

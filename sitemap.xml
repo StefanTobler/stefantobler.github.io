@@ -12,7 +12,7 @@
   </url>
   
   <url>
-    <loc>https://stefantobler.com/posts/try-hack-me/basic_pentesting/</loc>
+    <loc>https://stefantobler.com/posts/try-hack-me/basic-pentesting/</loc>
     <lastmod>2020-05-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -43,6 +43,11 @@
   
   <url>
     <loc>https://stefantobler.com/tags/privesc/</loc>
+    <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/smb/</loc>
     <lastmod>2020-05-27T00:00:00+00:00</lastmod>
   </url>
   

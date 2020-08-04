@@ -878,20 +878,20 @@ if (!doNotTrack) {
     <div class="row" id="recent-post-cards">
       
         <div class="col-lg-4 col-md-6 pt-2">
-  <a href="/posts/try-hack-me/basic_pentesting/" class="post-card-link">
+  <a href="/posts/try-hack-me/basic-pentesting/" class="post-card-link">
     <div class="card">
       <div class="card-head">
-        <img class="card-img-top" src='/images/content/posts/try-hack-me/basic_pentesting.png'
+        <img class="card-img-top" src='/images/content/posts/try-hack-me/basic-pentesting.png'
           alt="Card image cap"
         />
       </div>
       <div class="card-body">
         <h5 class="card-title">Basic Pentesting</h5>
-        <p class="card-text post-summary"> Tools #   nmap gobuster  Walkthrough #  First things first let&rsquo;s scan the box. I used the command nmap -sV -sS $IP and redirected the output to the file nmap/nmap.txt. It looks like there is an http server on this box. Let&rsquo;s try and connect to it to see if it is actually accessible. Doesn&rsquo;t look like we can access it. Let&rsquo;s run a gobuster scan on the domain to just see if we can access any other pages.</p>
+        <p class="card-text post-summary"> This Try Hack Me room guided users through the basics of web application pentesting. I learned about SMB enumeration and bruteforcing domains. This walkthrough also introduces bruteforcing logins with hydra and once the machine is compromised, elevating user privileges.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">May 27, 2020</span>
-        <a href="/posts/try-hack-me/basic_pentesting/" class="float-right btn btn-outline-info btn-sm">Read</a>
+        <a href="/posts/try-hack-me/basic-pentesting/" class="float-right btn btn-outline-info btn-sm">Read</a>
       </div>
     </div>
   </a>
@@ -908,7 +908,7 @@ if (!doNotTrack) {
       </div>
       <div class="card-body">
         <h5 class="card-title">Ice</h5>
-        <p class="card-text post-summary"> Tools #   nmap metasploit  Walkthrough #  First things first. Nmap scan. I used the command sudo nmap -sV -A -sS $IP then piped the output to nmap/nmap.txt. From the results it looks like there is a webserver open on port 8000 and port 5357. On port 800 there is an interesting software called Icecast running. Let&rsquo;s do some research about this. It looks like Icecast is a software that allows a computer to be a media server.</p>
+        <p class="card-text post-summary"> Ice is the extension to the Blue room. In this room we learn more about windows recon, exploitation and escalation. This box uses a vulnerable service called Icecast which allows us to access the machine using metasploit, then elevate those privileges by abusing a spool process.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">May 26, 2020</span>
@@ -929,7 +929,7 @@ if (!doNotTrack) {
       </div>
       <div class="card-body">
         <h5 class="card-title">Blue</h5>
-        <p class="card-text post-summary"> Tools #   metasploit nmap  Walkthrough #  First things first. Let&rsquo;s conduct a scan on the box using the command nmap -sS -sV -A $IP and pipe the output to the file nmap_out.txt. You can review the scan results there. Looking at the results the machine is running Windows 7 Professional 7601. If we google this version number we can find out that this version might be vulnerable to the &ldquo;EternalBlue&rdquo; (MS17-010) vulnerability.</p>
+        <p class="card-text post-summary"> Blue explores the dated, but widespread EternalBlue exploit. This exploit was used in the WannaCry ransomware attack which crippled healthcare systems and spread to millions of computers in a matter of days. In this room we are prompted to exploit this vulnerability using Metasploit.</p>
       </div>
       <div class="card-footer">
         <span class="float-left">May 26, 2020</span>
