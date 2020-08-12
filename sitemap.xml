@@ -4,11 +4,17 @@
   
   <url>
     <loc>https://stefantobler.com/posts/hack-the-box/</loc>
+    <lastmod>2020-05-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://stefantobler.com/posts/try-hack-me/</loc>
     <lastmod>2020-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/posts/hack-the-box/challenges/</loc>
+    <lastmod>2020-05-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -104,6 +110,26 @@
   <url>
     <loc>https://stefantobler.com/tags/windows/</loc>
     <lastmod>2020-05-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/enumeration/</loc>
+    <lastmod>2020-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/fuzzing/</loc>
+    <lastmod>2020-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/posts/hack-the-box/challenges/fuzzy/</loc>
+    <lastmod>2020-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/categories/hack-the-box/</loc>
+    <lastmod>2020-05-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
