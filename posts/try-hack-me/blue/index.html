@@ -15,7 +15,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.6cd8553a6854f4812343f0f0c8baca31271e686434f381fbe3c7226f66639176.css" integrity="sha256-bNhVOmhU9IEjQ/DwyLrKMSceaGQ084H748cib2ZjkXY=">
-<script defer src="/en.search.min.e965f1f4b584b3332594c3573527f6147b25c3cd763d64ce6cfcc0f79d7d875d.js" integrity="sha256-6WXx9LWEszMllMNXNSf2FHslw812PWTObPzA9519h10="></script>
+<script defer src="/en.search.min.c267527b44f9965cc88fe20c3d4676c6a19ff926191acbb665c62d7735e8a4e8.js" integrity="sha256-wmdSe0T5llzIj&#43;IMPUZ2xqGf&#43;SYZGsu2ZcYtdzXopOg="></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -315,9 +315,51 @@ https://github.com/alex-shpak/hugo-book
   Walkthrough
   <a class="anchor" href="#walkthrough">#</a>
 </h2>
-<p>First things first. Let&rsquo;s conduct a scan on the box using the command <code>nmap -sS -sV -A $IP</code> and pipe the output to the file <code>nmap_out.txt</code>. You can review the scan results there. Looking at the results the machine is running Windows 7 Professional 7601. If we google this version number we can find out that this version might be vulnerable to the &ldquo;EternalBlue&rdquo; (MS17-010) vulnerability. You can read more about it <a href="https://www.exploit-db.com/exploits/42315">here</a>. Now that we are done with recon, we can begin to try and gain access.</p>
+<p>First things first. Let&rsquo;s conduct a scan on the box using the command <code>nmap -sS -sV -A $IP</code>.</p>
+<pre><code>Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-24 00:27 EDT
+Nmap scan report for 10.10.203.178
+Host is up (0.14s latency).
+Not shown: 991 closed ports
+PORT      STATE SERVICE            VERSION
+135/tcp   open  msrpc              Microsoft Windows RPC
+139/tcp   open  netbios-ssn        Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds       Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP)
+3389/tcp  open  ssl/ms-wbt-server?
+|_ssl-date: 2020-05-24T04:28:55+00:00; -1s from scanner time.
+49152/tcp open  msrpc              Microsoft Windows RPC
+49153/tcp open  msrpc              Microsoft Windows RPC
+49154/tcp open  msrpc              Microsoft Windows RPC
+49158/tcp open  msrpc              Microsoft Windows RPC
+49160/tcp open  msrpc              Microsoft Windows RPC
+Service Info: Host: JON-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 1h14m59s, deviation: 2h30m00s, median: 0s
+|_nbstat: NetBIOS name: JON-PC, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 02:fd:24:c1:40:16 (unknown)
+| smb-os-discovery: 
+|   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+|   Computer name: Jon-PC
+|   NetBIOS computer name: JON-PC\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2020-05-23T23:28:50-05:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-05-24T04:28:50
+|_  start_date: 2020-05-24T04:27:10
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 157.79 seconds
+</code></pre><p>Looking at the results the machine is running Windows 7 Professional 7601. If we google this version number we can find out that this version might be vulnerable to the &ldquo;EternalBlue&rdquo; (MS17-010) vulnerability. You can read more about it <a href="https://www.exploit-db.com/exploits/42315">here</a>. Now that we are done with recon, we can begin to try and gain access.</p>
 <p>To gain access we are going to be using <code>metasploit</code>. To start <code>metasploit</code> use the command <code>msfconsole</code>. Then let&rsquo;s ping the server just to be sure that we can connect. <code>ping $IP</code>. In the <code>metasploit</code> console we can use the command <code>search MS17-010</code> to see exploits we can use. Next we can see payload 3 that has the title <code>exploit/windows/smb/ms17_010_eternalblue</code>. This is the code will will use to run against the machine. Now that these payloads are found we can use the command <code>use 3</code> to load the payload. Now that we have our payload set we can the options. Use the command <code>show options</code> to see which options we need to set in order to use our attack. We can see that the only field that is required but not set is the <code>RHOSTS</code>. To set this field we can use the command <code>set RHOSTS 10.10.100.140</code>. Now when we do <code>show options</code> again we should be able to see our target IP address. Now that all the options are set run the command <code>exploit</code> to launch our payload.</p>
-<p>Now that we have access to the machine that we want, we can upgrade our shell to a <code>meterpreter</code> shell. The easy way to do this, given that we have already put the shell in the background using CTRL-Z. We can use the command <code>sessions</code> to see the sessions. In my instance the session we are interested in has the ID 1. So I will use the command <code>sessions -u 1</code>. But you can also use the module <code>post/multi/manage/shell_to_meterpreter</code>, then use the command <code>use post/multi/manage/shell_to_meterpreter</code>. Now that we are using the post exploit module we can set the SESSION option to the session ID. Use the command <code>set SESSION 1</code>. Now that the session is set, let&rsquo;s fire up the meterpreter. Now let&rsquo;s <code>run</code>. Once execution is complete press enter and select the new meterpreter session from our available sessions. Use the command <code>sessions 2</code>. Now that we are in the meterpreter shell we can use the command <code>shell</code> then <code>whoami</code> to verify that we are the <code>nt authority\system</code> user. Now let&rsquo;s take a look at the processes using the command <code>ps</code>. Write down a process id towards the bottom of the list to migrate to. This might be unstable and not work the first time. If it fails try again (this is what tryhackme says). I used the <code>LiteAgent.exe</code> process and it worked. Now that we have bigrated the process let&rsquo;s get the user&rsquo;s hashes. Use the command <code>hashdump</code> and if the privileges were escalated correctly we should see all the users and their hashes. We can also see that there is a user named &lsquo;Jon&rsquo;. Now to crack his password. I used the website <a href="https://crackstation.net/">CrackStation</a>. To crack the password. Turns out this user&rsquo;s password is <code>alqfna22</code>.</p>
+<p>Now that we have access to the machine that we want, we can upgrade our shell to a <code>meterpreter</code> shell. The easy way to do this, given that we have already put the shell in the background using CTRL-Z. We can use the command <code>sessions</code> to see the sessions. In my instance the session we are interested in has the ID 1. So I will use the command <code>sessions -u 1</code>. But you can also use the module <code>post/multi/manage/shell_to_meterpreter</code>, then use the command <code>use post/multi/manage/shell_to_meterpreter</code>. Now that we are using the post exploit module we can set the SESSION option to the session ID. Use the command <code>set SESSION 1</code>. Now that the session is set, let&rsquo;s fire up the meterpreter. Now let&rsquo;s <code>run</code>. Once execution is complete press enter and select the new meterpreter session from our available sessions. Use the command <code>sessions 2</code>. Now that we are in the meterpreter shell we can use the command <code>shell</code> then <code>whoami</code> to verify that we are the <code>nt authority\system</code> user. Now let&rsquo;s take a look at the processes using the command <code>ps</code>. Write down a process id towards the bottom of the list to migrate to. This might be unstable and not work the first time. If it fails try again (this is what tryhackme says). I used the <code>LiteAgent.exe</code> process and it worked. Now that we have migrated the process let&rsquo;s get the user&rsquo;s hashes. Use the command <code>hashdump</code> and if the privileges were escalated correctly we should see all the users and their hashes. We can also see that there is a user named &lsquo;Jon&rsquo;. Now to crack his password. I used the website <a href="https://crackstation.net/">CrackStation</a>. To crack the password. Turns out this user&rsquo;s password is <code>alqfna22</code>.</p>
 <p>The first flag can be found in the root directory in the file <code>flag1.txt</code>. The third flag is in the user Jon&rsquo;s documents. The second flag is found in the directory <code>C:/Windows/system32/config</code>. This is also the directory where windows passwords are stored. Interesting stuff.</p>
 <p>This was a fun box and I feel like I have a better understanding of navigating through Windows directories and using the metasploit.</p>
 </p>
