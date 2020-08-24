@@ -6,7 +6,7 @@
     <description>Recent content in reverse-shell on Stefan Tobler</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://stefantobler.com/tags/reverse-shell/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Traceback</title>
       <link>https://stefantobler.com/posts/hack-the-box/traceback/</link>
-      <pubDate>Fri, 24 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 24 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://stefantobler.com/posts/hack-the-box/traceback/</guid>
       <description>This machine was challenging, but I learned a lot. I learned how to make &amp;ldquo;smarter&amp;rdquo; shells and how to upload the pspy script to a remote server. I wonder if I could have completed this machine without adding my public ssh key, because at the moment it is very identifiable.</description>
