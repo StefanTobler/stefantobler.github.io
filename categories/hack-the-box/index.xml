@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Remote</title>
+      <link>https://stefantobler.com/posts/hack-the-box/remote/</link>
+      <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/hack-the-box/remote/</guid>
+      <description>Remote was a very cool windows box that required us to discover a vulnerability in their CMS, after discovering an exposed file system that contained a backup. Once on the machine we can find out that there are some misconfigured privileges.</description>
+    </item>
+    
+    <item>
       <title>Traceback</title>
       <link>https://stefantobler.com/posts/hack-the-box/traceback/</link>
       <pubDate>Wed, 24 Jun 2020 00:00:00 +0000</pubDate>

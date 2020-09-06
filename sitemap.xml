@@ -73,6 +73,36 @@
   </url>
   
   <url>
+    <loc>https://stefantobler.com/tags/cms/</loc>
+    <lastmod>2020-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/privilege/</loc>
+    <lastmod>2020-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/posts/hack-the-box/remote/</loc>
+    <lastmod>2020-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/rpc/</loc>
+    <lastmod>2020-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/umbraco/</loc>
+    <lastmod>2020-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/windows/</loc>
+    <lastmod>2020-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://stefantobler.com/tags/lua/</loc>
     <lastmod>2020-06-24T00:00:00+00:00</lastmod>
   </url>
@@ -84,11 +114,6 @@
   
   <url>
     <loc>https://stefantobler.com/posts/hack-the-box/traceback/</loc>
-    <lastmod>2020-06-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://stefantobler.com/tags/windows/</loc>
     <lastmod>2020-06-24T00:00:00+00:00</lastmod>
   </url>
   
