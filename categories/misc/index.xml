@@ -17,7 +17,7 @@
       <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://stefantobler.com/posts/misc/virtualbox-tutorial/</guid>
-      <description>Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&amp;rsquo;t, privacy reasons, and many more. At UGASCS we mainly use our VMs to host all of the tools we need for CTFs and other cyber events.</description>
+      <description>Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&amp;rsquo;t, privacy reasons, and many more. At UGASCS we mainly use VMs to host all of the tools we need for CTFs and other cyber events.</description>
     </item>
     
   </channel>

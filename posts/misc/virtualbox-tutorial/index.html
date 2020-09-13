@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&rsquo;t, privacy reasons, and many more. At UGASCS we mainly use our VMs to host all of the tools we need for CTFs and other cyber events.">
+<meta name="description" content="Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&rsquo;t, privacy reasons, and many more. At UGASCS we mainly use VMs to host all of the tools we need for CTFs and other cyber events.">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="How to Install Kali Linux on VirtualBox" />
-<meta property="og:description" content="Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&rsquo;t, privacy reasons, and many more. At UGASCS we mainly use our VMs to host all of the tools we need for CTFs and other cyber events." />
+<meta property="og:description" content="Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&rsquo;t, privacy reasons, and many more. At UGASCS we mainly use VMs to host all of the tools we need for CTFs and other cyber events." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://stefantobler.com/posts/misc/virtualbox-tutorial/" />
 <meta property="article:published_time" content="2020-08-09T00:00:00+00:00" />
@@ -15,7 +15,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.6cd8553a6854f4812343f0f0c8baca31271e686434f381fbe3c7226f66639176.css" integrity="sha256-bNhVOmhU9IEjQ/DwyLrKMSceaGQ084H748cib2ZjkXY=">
-<script defer src="/en.search.min.5934fd3c336bfac86209edee9214dc0e935510e7e58e9c4ad5520394256dbf3e.js" integrity="sha256-WTT9PDNr&#43;shiCe3ukhTcDpNVEOfljpxK1VIDlCVtvz4="></script>
+<script defer src="/en.search.min.9f66c25aa70f4db9c7aeb297ec0610a4c152309cff91b5862fb7f1575e722bca.js" integrity="sha256-n2bCWqcPTbnHrrKX7AYQpMFSMJz/kbWGL7fxV15yK8o="></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -354,8 +354,8 @@ https://github.com/alex-shpak/hugo-book
   
 
 
-  <p><p>Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&rsquo;t, privacy reasons, and many more. At UGASCS we mainly use our VMs to host all of the tools we need for CTFs and other cyber events. Most of us use a Linux distro called <a href="https://www.kali.org/">Kali Linux</a>. Kali Linux is maintained by a company called <a href="https://www.offensive-security.com/">Offensive Security</a> who specialize in offsec training materials and certifications, you may have heard about the OSCP, ya that&rsquo;s them. Kali also come with tons of great tools preinstalled guaranteed (most of the time) to work with ease. It is helpful to have a VM to prevent clutter on our host machine and also a lot of the tools we are going to be using were developed for the Linux environment.</p>
-<p>Okay now that you know why we use virtual machines, let&rsquo;s move forward with how to set one up. First off take a look at the prerequisites and the system requirements below. After you download the required files come back here and continue the tutorial.</p>
+  <p><p>Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&rsquo;t, privacy reasons, and many more. At UGASCS we mainly use VMs to host all of the tools we need for CTFs and other cyber events. Most of us use a Linux distro called <a href="https://www.kali.org/">Kali Linux</a>. Kali Linux is maintained by a company called <a href="https://www.offensive-security.com/">Offensive Security</a> who specialize in offsec training materials and certifications, you may have heard about the OSCP, ya that&rsquo;s them. Kali also come with tons of great tools preinstalled, guaranteed (most of the time) to work with ease. It is helpful to have a VM to prevent clutter on our host machine and also a lot of the tools we are going to be using were developed for the Linux environment.</p>
+<p>Okay, now that you know why we use virtual machines, let&rsquo;s move forward with how to set one up. First off take a look at the prerequisites and the system requirements below. After you download the required files come back here and continue the tutorial.</p>
 <h2 id="prerequisites-and-system-requirements">
   Prerequisites and System Requirements
   <a class="anchor" href="#prerequisites-and-system-requirements">#</a>
@@ -366,7 +366,7 @@ https://github.com/alex-shpak/hugo-book
 <li>4GB of RAM</li>
 <li>30 GB of free storage space</li>
 </ul>
-<p>Now that  you have downloaded all the required software, go ahead and install VirtualBox and when it asks you to install the extension pack do so as well. If you are not prompted to install the extensions see <a href="#how-to-install-extensions-pack">How to Install Extensions Pack</a> otherwise skip this step to <a href="#how-to-add-a-new-guest-machine">How to Add a New Guest Machine</a>.</p>
+<p>Now that you have downloaded all the required software, go ahead and install VirtualBox and when it asks you to install the extension pack do so as well. If you are not prompted to install the extensions see <a href="#how-to-install-extensions-pack">How to Install Extensions Pack</a> otherwise skip this step to <a href="#how-to-add-a-new-guest-machine">How to Add a New Guest Machine</a>.</p>
 <h2 id="how-to-install-extensions-pack">
   How to Install Extensions Pack
   <a class="anchor" href="#how-to-install-extensions-pack">#</a>
