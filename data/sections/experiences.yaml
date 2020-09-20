@@ -10,20 +10,37 @@ section:
 # Your experiences
 experiences:
 - company:
+    name: VerSprite
+    url: "https://versprite.com/"
+    location: Atlanta, Georgia (Remote)
+    # company overview
+    overview: VerSprite Cybersecurity is a cybersecurity consulting firm 
+  positions:
+  - designation: Geopolitical Risk Intern
+    start: Sep 2020
+    # don't provide end date if you are currently working there. It will be replaced by "Present"
+    # end: Dec 2020
+    # give some points about what was your responsibilities at the company.
+    responsibilities:
+    - Research cyber campaigns related to the 2020 US presidential election.
+    - Report on cyber campaigns using the STIX II format.
+    - Communicate my findings to my supervisors and other company employees.
+
+- company:
     name: UGA Society of Cyber Security
     url: "https://ugascs.com/"
     location: Athens, Georgia
     # company overview
-    overview: UGA SCS is a student organization for those interested in cyber security.
+    overview: UGA SCS is a student organization for those interested in cybersecurity.
   positions:
-  - designation: Cyber Team Vice President
+  - designation: VP of Hacking & Captain of the Cyber Team
     start: Jan 2020
     # don't provide end date if you are currently working there. It will be replaced by "Present"
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
     - Seek out and organize cyber team events.
-    - Gather and present resources to new club members trying to learn more about cyber security. 
+    - Gather and present resources to new club members trying to learn more about cybersecurity. 
     - Encourage members to actively participate in CTF challenges and pen-testing labs such as [Hack the Box](https://www.hackthebox.eu/).
 
 - company:
@@ -43,7 +60,7 @@ experiences:
     name: University of Georgia Department of Computer Science
     url: "https://www.cs.uga.edu/"
     location: Athens, Georgia
-    overview: Intern counting Company (ICC) is responsible for counting worldwide intern Engineers.
+    overview: I was a teaching assistant for CSCI 1302 Software Development and worked with students to improve their comprehension of Java programming fundamentals.
   positions:
   - designation: Teaching Assistant for Software Development
     start: Jan 2020

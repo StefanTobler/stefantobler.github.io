@@ -38,6 +38,6 @@
       {{- partial "docs/title" .Page -}}
     </a>
   {{ else }}
-    <span>{{- partial "docs/title" .Page -}}</span>
+    <a href="{{ "categories/" | absURL }}{{ .Page.Title | urlize }}">{{- partial "docs/title" .Page -}}</a>
   {{ end }}
 {{ end }}

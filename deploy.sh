@@ -1,5 +1,12 @@
 #!/bin/sh
 
+msg="rebuilding site $(date)"
+
+# Optional argument to supply build message. Use the syntax $ ./deploy.sh 'message'
+if [[ $# -ne 0 ]]; then 
+	msg="${msg} - ${1}"
+fi
+
 # If a command fails then the deploy stops
 set -e
 
@@ -14,11 +21,6 @@ cd public
 # Add changes to git.
 git add .
 
-# Commit changes.
-msg="rebuilding site $(date)"
-if [ -n "$*" ]; then
-	msg="$*"
-fi
 git commit -m "$msg"
 
 # Push source and build repos.

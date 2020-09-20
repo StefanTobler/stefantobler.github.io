@@ -1,4 +1,9 @@
 {{ define "main" }}
+{{ if  .Params.hero }}
+<div class="post-hero-container">
+  <img class="card-img-top" src='{{ partial "helpers/get-hero.html" . }}'/>
+</div>
+{{ end }}
 <article class="markdown">
   <h1>
     <a href="{{ .RelPermalink }}">{{ .Title }}</a>

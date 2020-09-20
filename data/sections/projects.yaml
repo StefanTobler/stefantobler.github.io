@@ -47,6 +47,14 @@ projects:
   summary: Actively learning to enumerate machines, exploit misconfigurations and escalate priviledges.
   tags: ["hacking", "pen-testing", "kali-linux", "education"]
 
+- name: Cyber Challenge Writeups
+  logo: images/logo.png
+  role: Writer
+  timeline: "Oct 2020 - Present"
+  url: "https://stefantobler.com/posts"
+  summary: A blog of comprehensive walkthroughs of the challenges I have completed from various CTF and cybersecurity related challenges.
+  tags: ["write-ups","sharing","ctf","challenges"]
+
 - name: Try Hack Me
   logo: images/projects/thm.png
   role: Hacker

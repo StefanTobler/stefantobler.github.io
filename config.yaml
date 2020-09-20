@@ -3,6 +3,9 @@ languageCode: en-us
 title: Stefan Tobler
 theme: "stefan"
 
+# Length in words of the summary section.
+summaryLength: 35
+
 # Allow raw html in markdown file
 markup:
   goldmark:

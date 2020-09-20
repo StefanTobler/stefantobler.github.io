@@ -85,7 +85,7 @@ while getopts ":hnc:t:qvd:x:" opt; do
         echo
         echo "Example:"
         echo "    ./add.sh /home/ctf/Documents/ctf/challenge1 content/posts/hack-the-box"
-        echo "    ./add.sh -c hack-the-box --tags 'session jacking','cron jobs',windows /home/hackerman/super_hard_box content/posts/box_challenges"
+        echo "    ./add.sh -c hack-the-box --tags 'session jacking','cron jobs',windows /home/hackerman/super_hard_box content/posts/box-challenges"
         echo
         exit 0
         ;;
@@ -144,7 +144,7 @@ fi
 # mkdir -p $TARGET
 
 TITLE=$(head -n 1 $SOURCE/methodology.md | sed 's/# //' | sed 's/ Methodology//')
-FILE=$(echo $TITLE | tr '[:upper:]' '[:lower:]' | tr '[ ]' '[_]')
+FILE=$(echo $TITLE | tr '[:upper:]' '[:lower:]' | tr '[ ]' '[-]')
 
 # Copy methodology to target 
 cp $SOURCE/methodology.md $TARGET/$FILE.md

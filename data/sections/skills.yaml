@@ -24,9 +24,13 @@ skills:
 
 - name: Git
   icon: "images/skills/git.png"
-  summary: "Experienced with git-based development. Mostly, use Github for personal projects."
+  summary: "Experienced with git-based development. Mostly, use Github for personal and school projects."
 
 - name: C++
   icon: "images/skills/c++.png"
   summary: "Know C/C++ programming. Experience decompiling binaries with Ghidra and analyzing code."
+
+- name: MySQL
+  icon: "images/skills/mysql.png"
+  summary: "Working knowledge of MySQL and relational database design."
 

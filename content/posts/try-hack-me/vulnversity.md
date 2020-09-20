@@ -10,6 +10,9 @@ tags:
 - privesc
 - recon
 ---
+
+Vulnversity walks through how to preform recon on targets and look for possible points of entry for payloads such as reverse shells. On this box port 3333 is running a webserver. After dirbusting the webserver we find a path called `internal` where we are able to upload php files. From there we can upload a reverse shell in php and get access to the machine. Once on the machine we check file permissions to find an avenue to escalate our privileges.
+
 ## Tools
 
 * nmap
