@@ -20,5 +20,14 @@
       <description>This box was really cool for a few reasons. First off we bypass authentication using one of the OWASP Top 10, then continue to upload a reverse shell by tricking the web server into believing we are uploading a .</description>
     </item>
     
+    <item>
+      <title>Admirer</title>
+      <link>https://stefantobler.com/posts/hack-the-box/admirer/</link>
+      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/hack-the-box/admirer/</guid>
+      <description>This was one of the first boxes I completed and it was difficult. It took me the longest time to enumerate the directories and finally find what I was looking for. Overall, I learned more about using my resources and double checking where I had thought I already looked.</description>
+    </item>
+    
   </channel>
 </rss>

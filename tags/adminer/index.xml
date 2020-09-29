@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>enumeration on Stefan Tobler</title>
-    <link>https://stefantobler.com/tags/enumeration/</link>
-    <description>Recent content in enumeration on Stefan Tobler</description>
+    <title>adminer on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/adminer/</link>
+    <description>Recent content in adminer on Stefan Tobler</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 11 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://stefantobler.com/tags/enumeration/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://stefantobler.com/tags/adminer/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://stefantobler.com/posts/hack-the-box/admirer/</guid>
       <description>This was one of the first boxes I completed and it was difficult. It took me the longest time to enumerate the directories and finally find what I was looking for. Overall, I learned more about using my resources and double checking where I had thought I already looked.</description>
-    </item>
-    
-    <item>
-      <title>Fuzzy</title>
-      <link>https://stefantobler.com/posts/hack-the-box/challenges/fuzzy/</link>
-      <pubDate>Wed, 13 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://stefantobler.com/posts/hack-the-box/challenges/fuzzy/</guid>
-      <description>Fuzzy challenged the user on the basics of fuzzing and taught me how to use wfuzz and other techniques to learn information about my target machine. I suggest anyone who would like to learn about fuzzing take on this challenge.</description>
     </item>
     
   </channel>

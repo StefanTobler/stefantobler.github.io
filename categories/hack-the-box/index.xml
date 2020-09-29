@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Admirer</title>
+      <link>https://stefantobler.com/posts/hack-the-box/admirer/</link>
+      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/hack-the-box/admirer/</guid>
+      <description>This was one of the first boxes I completed and it was difficult. It took me the longest time to enumerate the directories and finally find what I was looking for. Overall, I learned more about using my resources and double checking where I had thought I already looked.</description>
+    </item>
+    
+    <item>
       <title>Fuzzy</title>
       <link>https://stefantobler.com/posts/hack-the-box/challenges/fuzzy/</link>
       <pubDate>Wed, 13 May 2020 00:00:00 +0000</pubDate>
