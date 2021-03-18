@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tutorial on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/tutorial/</link>
+    <description>Recent content in tutorial on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to Install Kali Linux on VirtualBox</title>
+      <link>https://stefantobler.com/posts/misc/virtualbox-tutorial/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/misc/virtualbox-tutorial/</guid>
+      <description>Virtual machines are super useful! They allow users to create isolated environments for testing, running software that the host machine can&amp;rsquo;t, privacy reasons, and many more. At UGASCS we mainly use VMs to host all of the tools we need for CTFs and other cyber events.</description>
+    </item>
+    
+  </channel>
+</rss>
