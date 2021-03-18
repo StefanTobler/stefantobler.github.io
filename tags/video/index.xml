@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>video on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/video/</link>
+    <description>Recent content in video on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/tags/video/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vulnversity</title>
+      <link>https://stefantobler.com/posts/try-hack-me/vulnversity/</link>
+      <pubDate>Wed, 13 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/try-hack-me/vulnversity/</guid>
+      <description>Vulnversity walks through how to preform recon on targets and look for possible points of entry for payloads such as reverse shells. On this box port 3333 is running a webserver. After dirbusting the webserver we find a path called internal where we are able to upload php files.</description>
+    </item>
+    
+  </channel>
+</rss>

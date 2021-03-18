@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mssql on Stefan Tobler</title>
+    <link>https://stefantobler.com/tags/mssql/</link>
+    <description>Recent content in mssql on Stefan Tobler</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Mar 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://stefantobler.com/tags/mssql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Archetype</title>
+      <link>https://stefantobler.com/posts/hack-the-box/archetype/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/posts/hack-the-box/archetype/</guid>
+      <description>This was a good box to get back in the swing of things, it gave me a good challenge, and reminded me of how difficult it can be to google for Windows enum tools. Besides that, it was a good reminder of how to interact with SMB and showed me a new place to look for user command history in Windows.</description>
+    </item>
+    
+  </channel>
+</rss>

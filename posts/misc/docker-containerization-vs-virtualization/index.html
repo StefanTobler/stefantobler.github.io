@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Containers and virtual machines are used all across cloud infrastructure. Cloud providers utilizes virtualization to divvy up hardware resources so that they can maximize hardware utilization on their machines. Docker is used to develop, deploy, and ship applicaiations quickly with low overhead some isolation.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Docker - Containerization vs. Virtualization" />
+<meta property="og:description" content="Containers and virtual machines are used all across cloud infrastructure. Cloud providers utilizes virtualization to divvy up hardware resources so that they can maximize hardware utilization on their machines. Docker is used to develop, deploy, and ship applicaiations quickly with low overhead some isolation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://stefantobler.com/posts/misc/docker-containerization-vs-virtualization/" />
+<meta property="article:published_time" content="2020-11-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-10T00:00:00+00:00" />
+<title>Docker - Containerization vs. Virtualization | Stefan Tobler</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6cd8553a6854f4812343f0f0c8baca31271e686434f381fbe3c7226f66639176.css" integrity="sha256-bNhVOmhU9IEjQ/DwyLrKMSceaGQ084H748cib2ZjkXY=">
+<script defer src="/en.search.min.15bd964bfcaaf5bf813b91dff63af6faee9268200da8af7aae6bc64bbf9d2f71.js" integrity="sha256-Fb2WS/yq9b&#43;BO5Hf9jr2&#43;u6SaCANqK96rmvGS7&#43;dL3E="></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158607018-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+<link rel="stylesheet" href="/assets/css/posts.css" />
+
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/images/logo.png" alt="Logo" /><span>Stefan Tobler</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+<span><a href='https://stefantobler.com/posts/'>Recent Posts</a></span>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/hack-the-box">Hack the Box</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/challenges">Challenges</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/challenges/fuzzy/" class="">Fuzzy</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/archetype/" class="">Archetype</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/magic/" class="">Magic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/remote/" class="">Remote</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/traceback/" class="">Traceback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/admirer/" class="">Admirer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/try-hack-me">Try Hack Me</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/basic-pentesting/" class="">Basic Pentesting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/blue/" class="">Blue</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/ice/" class="">Ice</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/vulnversity/" class="">Vulnversity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/shodan.io/" class="">Shodan.io</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/capture-the-flag">Capture the Flag</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/ctf/nahamcon_2021/" class="">Nahamcon 2021 CTF</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/misc">Misc</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/misc/docker-containerization-vs-virtualization/" class="active">Docker - Containerization vs. Virtualization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/misc/virtualbox-tutorial/" class="">How to Install Kali Linux on VirtualBox</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Docker - Containerization vs. Virtualization</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-docker-not">What is Docker not?</a></li>
+    <li><a href="#what-is-docker">What is Docker?</a></li>
+    <li><a href="#why-docker">Why Docker?</a></li>
+    <li><a href="#how-is-docker-implemented">How is Docker Implemented?</a></li>
+    <li><a href="#hands-on-with-docker">Hands-on with Docker</a>
+      <ul>
+        <li><a href="#how-to-install-docker">How to Install Docker</a></li>
+        <li><a href="#using-docker">Using Docker</a></li>
+        <li><a href="#deploying-a-docker-container">Deploying a Docker Container</a></li>
+      </ul>
+    </li>
+    <li><a href="#containerization-vs-virtualization">Containerization vs. Virtualization</a></li>
+    <li><a href="#attribution">Attribution</a>
+      <ul>
+        <li><a href="#works-cited">Works Cited</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<div class="post-hero-container">
+  <img class="card-img-top" src='/images/content/posts/misc/docker/horizontal-logo-monochromatic-white.png'/>
+</div>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/misc/docker-containerization-vs-virtualization/">Docker - Containerization vs. Virtualization</a>
+  </h1>
+  
+  
+  <div>
+    
+      <a href="/categories/misc/">misc</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/docker/">docker</a>, 
+      <a href="/tags/containerization/">containerization</a>, 
+      <a href="/tags/virtualization/">virtualization</a>
+  </div>
+  
+
+
+  <p><p>Containers and virtual machines are used all across cloud infrastructure. Cloud providers utilizes virtualization to divvy up hardware resources so that they can maximize hardware utilization on their machines. Docker is used to develop, deploy, and ship applicaiations quickly with low overhead some isolation. Both of these technologies are vital in how we interact with the web today. We are going to dive into Docker and how containers and virtual machines are different. This type of exploration allows us to be more aware of potential security issues and be able to talk about what kind of infrastructure a modern web service may be running.</p>
+<h2 id="what-is-docker-not">
+  What is Docker not?
+  <a class="anchor" href="#what-is-docker-not">#</a>
+</h2>
+<p>Docker is not a virtual machine. Virtual machines allow one set of hardware to run multiple operating systems by carving out resources to dedicate to each OS running. Hypervisors such as VMWare manage these virtual machines and divvy up resources. The hypervisor can run in place of the traditional operating system such that it is the only software interacting directly with the hardware (<strong>Type 1</strong>). In most cases, virtualization allows for complete isolation of environments so that OSs running on the same hardware cannot access each other&rsquo;s memory spaces at all. At a high level, this is implemented by not allowing the OS running to know that more resources are available.</p>
+<p>For example, the hypervisor dedicates 4GB of RAM to my Windows machine and 2GB of RAM to my Linux machine. The Windows and Linux machines do not know that there exists more RAM than they are dedicated. Why? Well, that is because all the memory and storage they have access to is virtual. It is all managed by the hypervisor.</p>
+<h2 id="what-is-docker">
+  What is Docker?
+  <a class="anchor" href="#what-is-docker">#</a>
+</h2>
+<p>Docker is a tool, written in Go, to allow applications to run in a loosely isolated environment called a container. Simply put, a container is like OS virtualization. Whereas virtual machines are hardware virtualization, containers are like OS virtualization.</p>
+<p><img src="/images/content/posts/misc/docker/docker_container.png" alt="image of container architechture" /></p>
+<p>These containers run on top of the docker daemon, running on a host OS (ex. Ubuntu). Each container has it&rsquo;s own file system, processes, and system memory. A Docker container cannot access the processes running on the host OS, and it cannot access the processes running on parallel Docker containers. Containers are self-contained; everything needed to run the application inside the container is installed, except for the kernel. If you install a website, then the backend and all the required applications will be installed. Once we create a Docker container, we can pack it up and take it anywhere. It is possible to deploy it on any system that is running Docker and shares the same kernel.</p>
+<h2 id="why-docker">
+  Why Docker?
+  <a class="anchor" href="#why-docker">#</a>
+</h2>
+<p>Docker is fast and lightweight. Each docker container is sharing the Linux kernel on the host OS, so when an application launches, the kernel does not need to start; it is already running! Docker can also help with developing microservices. You don&rsquo;t need to keep developing apps repeatedly but can package and ship smaller parts of a big project. Docker also contains all its dependencies within the container. This can reduce conflicting dependencies on a machine and also makes these dependencies easy to install since they come shipped with the container. Docker containers can quickly recover from a crash and won&rsquo;t affect other processes on the system. In addition, there is the added benefit of security through obscurity. Since a container cannot see processes outside of its namespace, the containers are secure, at least to some extent. We will talk more about the security of containers down the road.</p>
+<p>For example, someone wants to set up websites. They can split the store application into account services, product catalog, cart server, and an order server. With Docker, we can set up containers to perform these functions then deploy them on the different servers with our websites. If we have a store and a forum website, these both need account services. To get account services running on our forum, we need to deploy our docker container that deals with account services on our servers then we have account services set up for our websites. Another use for Docker might be to keep track of a toolset. Penetration testers often have a set of tools they prefer to use. When starting up a new system or new VM, it can be a pain to install all of these tools; with Docker, it is possible to create a container with all the tools you need at the version number you want.</p>
+<h2 id="how-is-docker-implemented">
+  How is Docker Implemented?
+  <a class="anchor" href="#how-is-docker-implemented">#</a>
+</h2>
+<p>Docker is built on the power of cgroups. cgroups allow the Docker Manager to allocate specific amounts of memory, network bandwidth, CPU cycles, and more to specific processes running on the system.</p>
+<p>Equally as important as cgroups are namespaces. &ldquo;When you run a container, Docker creates a set of namespaces for that container.&rdquo; The documentation states that when a container starts, new namespaces are created! So what are these magical namespaces then? Namespaces are what allow the containers to be isolated from one another. The documentation gives the following namespaces as an example of some that the Docker Engine uses on Linux.</p>
+<ul>
+<li>The <code>pid</code> namespace: Process isolation (PID: Process ID).</li>
+<li>The <code>net</code> namespace: Managing network interfaces (NET: Networking).</li>
+<li>The <code>ipc</code> namespace: Managing access to IPC resources (IPC: InterProcess Communication).</li>
+<li>The <code>mnt</code> namespace: Managing filesystem mount points (MNT: Mount).</li>
+<li>The <code>uts</code> namespace: Isolating kernel and version identifiers. (UTS: Unix Timesharing System).</li>
+</ul>
+<p>As we can see, there are namespaces to handle most of the tasks that the OS does. Containerization is like virtualizing the OS, not the hardware. By creating these namespaces, Docker is essentially creating a virtual OS for the application to run in. However, unlike hardware virtualization, the host OS can see the processes running inside of the container. This is because the container is sharing the host kernel. Although the host OS and the Docker container share different namespaces, the Docker processes are still running inside the host OS namespace. Namespaces put the blinds on the container. The container believes that they are the only thing that exists but does not know what lies beyond itself.</p>
+<h2 id="hands-on-with-docker">
+  Hands-on with Docker
+  <a class="anchor" href="#hands-on-with-docker">#</a>
+</h2>
+<p>You can either do this on your local machine or, like I am, in an EC2 instance. An EC2 instance is a VM hosted on AWS, and the micro-instances can be spun-up with the free membership at no cost. It also gives me a clean platform to learn about Docker in. This tutorial is for a Unix based machine. Pulling the CentOS image on a Windows machine might not work unless you are inside the Windows Subsystem for Linux.</p>
+<p>The host OS I will be using is Ubuntu; the installation commands may be different if you are on another distro.</p>
+<h3 id="how-to-install-docker">
+  How to Install Docker
+  <a class="anchor" href="#how-to-install-docker">#</a>
+</h3>
+<ol>
+<li>First, make sure your system has the latest packages.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt-get update <span style="color:#f92672">&amp;&amp;</span> sudo apt-get upgrade
+</code></pre></div><ol start="2">
+<li>Now that the system is up to date, we can install Docker.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt-get docker.io
+</code></pre></div><ol start="3">
+<li>After installing Docker you need to add your current user to the Docker group so that it has permission to interact with the Docker daemon.</li>
+</ol>
+<p><strong>The <code>docker</code> group grants privileges equivalent to the <code>root</code> user. For details on how this impacts security in your system, see <a href="https://docs.docker.com/engine/security/#docker-daemon-attack-surface">Docker Daemon Attack Surface</a>.</strong></p>
+<ol start="4">
+<li>Create the group.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo groupadd docker
+</code></pre></div><ol start="5">
+<li>Add your user to the docker group</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo usermod -aG docker $USER
+</code></pre></div><ol start="6">
+<li>Logout and log back into your user to see the changes take effect.</li>
+</ol>
+<h3 id="using-docker">
+  Using Docker
+  <a class="anchor" href="#using-docker">#</a>
+</h3>
+<p>The Docker CLI uses the command <code>docker</code> to interact with the docker daemon. We can pull images, run containers, execute commands inside containers, and more with this command.</p>
+<p>First, let&rsquo;s install an operating system using Docker. We will install the CentOS image to see how namespaces work within the context of a container. We can use the command <code>docker pull</code> to pull down images published on <a href="https://hub.docker.com/">Docker Hub</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker pull centos:latest
+
+$ docker run -d -t --name docker-tutorial centos
+</code></pre></div><p>After running the container, detached and run in the background. The <code>-d</code> flag runs the container in the background and detaches from the shell where it was spawned. If the shell closes, the container will stay alive. The <code>-t</code> flag allocates a pseudo-tty inside the container so that we will be able to grab a shell inside of it. <code>docker ps</code> allows us to see the containers that are currently running. Now that the container is running let&rsquo;s jump inside of it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker exec -it docker-tutorial bash
+</code></pre></div><p>The <code>-it</code> command allows us to have an interactive terminal. Now we are inside the container! We can observe how the <code>pid</code> namespace changes if we use the command <code>watch &quot;ps aux&quot;</code> in our container then search for the process on our host machine.</p>
+<h4 id="host-os">
+  Host OS
+  <a class="anchor" href="#host-os">#</a>
+</h4>
+<p><img src="/images/content/posts/misc/docker/docker_pid_host.png" alt="image of host pid" /></p>
+<h4 id="centos-container">
+  CentOS Container
+  <a class="anchor" href="#centos-container">#</a>
+</h4>
+<p><img src="/images/content/posts/misc/docker/docker_pid_container.png" alt="image of watch pid" /></p>
+<p>As you can see, the <code>pid</code> of the process inside and outside the container is different. Inside the container, <code>watch</code> has a <code>pid</code> of 43, but on our host OS, the same process has the <code>pid</code> of 10886. Why is this? Again, namespaces! Namespaces create an entirely new process group inside the container, and the container cannot see outside of that group. The host OS, however, can see the processes running inside of the container. This proves that containers are not virtualization. They host and the container share processes!</p>
+<p><img src="/images/content/posts/misc/docker/docker_namespace_image.png" alt="best drawing of the year" /></p>
+<p>This illustration represents the idea of <code>pid</code> namespacing. The host OS sees all the processes that it is running and that the container is running. However, the container only sees the processes running inside of it, and the container doesn&rsquo;t see the true <code>pid</code> of the process, only the id it is given in its namespace. Another interesting thing to note about the container&rsquo;s namespace is that <code>pid</code> 1 is given to <code>/bin/bash</code> in this case. Typically this <code>pid</code> is reserved for either the <code>init</code> or <code>systemd</code> process on a Linux machine because all other processes originated from it. In the container&rsquo;s namespace, Docker assigns the first process that is run <code>pid</code> 1.</p>
+<p>Another way to visualize the graphic above on our machine is to use the command <code>pstree -p</code>. <code>pstree</code> allows us to see all the processes running as a tree; we can see where processes forked and who their children are. With <code>watch</code> still running in the container, let&rsquo;s execute this command.</p>
+<h4 id="host-os-1">
+  Host OS
+  <a class="anchor" href="#host-os-1">#</a>
+</h4>
+<p><img src="/images/content/posts/misc/docker/docker_pstree.png" alt="pstree image" /></p>
+<p>Let&rsquo;s take a look at the output. We can see that <code>watch</code> forked from <code>bash</code> from the <code>containerd-shim</code>, which started from <code>containerd</code>, which was created by <code>systemd</code>. <code>containerd</code> is automatically started by the Docker daemon and &ldquo;manages the complete container lifecycle of its host system.&rdquo; You can learn more about <code>containerd</code> on its <a href="https://containerd.io/">website</a> and more about how Docker uses it in the <a href="https://docs.docker.com/engine/reference/commandline/dockerd/">Docker Documentation</a>.</p>
+<p>We can check the namespaces of our machine&rsquo;s processes by looking in the <code>proc</code> folder in the root directory.</p>
+<h4 id="container-namespaces">
+  Container Namespaces
+  <a class="anchor" href="#container-namespaces">#</a>
+</h4>
+<p><img src="/images/content/posts/misc/docker/docker_namespace_container.png" alt="container namespace" /></p>
+<p>The output shows us the different namespaces used by this process. If we compare this to the namespace of the shell process running on the machine, we will see a different set of namespaces.</p>
+<h4 id="host-namespace">
+  Host Namespace
+  <a class="anchor" href="#host-namespace">#</a>
+</h4>
+<p><img src="/images/content/posts/misc/docker/docker_namespace_home.png" alt="host namespace" /></p>
+<p><code>$$</code> represents the <code>pid</code> of the shell, and <code>1</code> is the <code>pid</code> of the <code>systemd</code> process. As you can see, the namespaces that are being used by these two processes are the same. Fascinating right? Another thing to note is that not all the namespaces are different. For example, the <code>user</code> namespace and the <code>cgroup</code> namespace are the same.</p>
+<h3 id="deploying-a-docker-container">
+  Deploying a Docker Container
+  <a class="anchor" href="#deploying-a-docker-container">#</a>
+</h3>
+<p>Docker makes it very easy to deploy web applications. On my EC2 instance, I will deploy a vulnerable web application with a backend and front end in seconds. The image I am going to use is called OWASP Juice Shop.</p>
+<p>If you don&rsquo;t know what OWASP is, it is a nonprofit foundation that provides free and open-source security tools to the world. The Open Web Application Security Project (OWASP) also has hundreds of local chapters worldwide where members can network and learn about security.</p>
+<p>OWASP Juice Shop is a sophisticated and modern web application littered with security flaws. It is perfect for security training and those interested in web application security. The whole OWASP Top Ten has been incorporated into the website, making it a great place to learn about security flaws present in web applications today. Juice Shop is also available as a Docker container, making it perfect for this tutorial.</p>
+<p>To get the container image, we are going to use the <code>docker pull</code> command again.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker pull bkimminich/juice-shop
+</code></pre></div><p>From my AWS instance, I am going to run the container and map it to port 80. If you deploy this container on an AWS instance, make sure that you have a rule that allows inbound traffic on port 80. Traffic rules are in the security settings of your instance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d -p 80:3000 bkimminich/juice-shop
+</code></pre></div><p>If you want to run the website on your local machine, the command differs just a bit.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run --rm -p 3000:3000 bkimminich/juice-shop
+</code></pre></div><p>Now navigate to the public URL of your AWS instance. If you are doing this on your local machine, visit <code>localhost:3000</code>. If it all worked correctly, you should be greeted by the Juice Shop page.</p>
+<p><img src="/images/content/posts/misc/docker/docker_juice_shop.png" alt="juice shop image" /></p>
+<h2 id="containerization-vs-virtualization">
+  Containerization vs. Virtualization
+  <a class="anchor" href="#containerization-vs-virtualization">#</a>
+</h2>
+<p>Virtualization and containerization are almost omnipresent technologies in web service infrastructure. When you rent a machine on AWS, Azure, GPC, or any other cloud platform provider, you are not renting the whole server and all the hardware on it; you are typically renting some of the hardware, accessible by a virtual machine. When spinning up one of these VMs on a cloud platform, you can choose whether you want Linux, Windows, Solaris, BSD, or other kinds of operating systems. This is important because these service providers want each of their users to have a completely isolated environment all to themselves, even though there might be ten other people using the same hardware.</p>
+<p><img src="/images/content/posts/misc/docker/docker_container_vs_vm.png" alt="Containerization and virtualization image" /></p>
+<p>Containerization comes in handy when we want to deploy applications on our server. The container engine (Docker) can handle a large number of containers with ease. We could isolate different applications on our machine using virtual machines and have each application run on its operating system, but this is a very heavy process. If we choose to virtualize everything, we need to spin up different kernels, and accessing hardware is not as efficient. When using containers, we share the kernel with the host OS, and accessing hardware is quicker because we do not need to go through the guest OS, then the hypervisor, a container can jump straight from the host OS to the hardware. This reduces overhead and, in addition to sharing the kernel, makes containers a much lighter weight and faster way to isolate applications.</p>
+<p>If an application crashes or fails inside of a container, the container can just be rebooted. Restarting a container is much less costly and much quicker than rebooting a VM because the kernel does not need to be reinitialized.</p>
+<p>However, containerization does not come at a cost. Because of the shared kernel space, containerized applications can only run on the kernels they were built on. That being said, a container built on Windows probably might have issues running on Ubuntu. This also means that containers are vulnerable to kernel-level exploits. Once a container is broken out of the attacker has free reign on the host OS. Including all the other containers running on that system.</p>
+<p>The security of a container highly depends on the security configuration of the host machine. For example, make sure the Docker daemon can only be controlled by trusted users and not any user on the machine. The Docker documentation also recommends that any server running Docker containers should exclusively run applications in containers, except for admin tools like SSH and logging tools.</p>
+<h2 id="attribution">
+  Attribution
+  <a class="anchor" href="#attribution">#</a>
+</h2>
+<p>I used a lot of resources to compose this post. Including the resources listed below, I am incredibly thankful for <a href="https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w">LiveOverflow</a>. His video about Docker proved to be priceless resources when learning about the implementation, and the hands-on part of this post is based directly on his video about namespaces. Another invaluable resource was the <a href="https://www.youtube.com/channel/UC9x0AN7BWHpCDHSm9NiJFJQ">NetworkChuck</a>. His video highlighting the differences between virtualization and containerization helped me grasp many of the nuances between the two.</p>
+<p>I ended up reading a lot of Docker documentation to come up with this, and it makes me remember how great good documentation of a tool is. It is great to see that the documents mentioned the underlying technologies, and it offered a wealth of information about where to look next.</p>
+<p>If you are interested you can checkout the slides I prepared for this presentation <a href="/files/docker_presentation.pdf">here</a>.</p>
+<h3 id="works-cited">
+  Works Cited
+  <a class="anchor" href="#works-cited">#</a>
+</h3>
+<p>&ldquo;Docker Overview.&rdquo; <em>Docker Documentation</em>, 6 Nov. 2020, docs.docker.com/get-started/overview/.</p>
+<p>Kerrisk, Michael. &ldquo;Namespaces in Operation, Part 1: Namespaces Overview.&rdquo; <em>LWN.net</em>, 4 Jan. 2013, lwn.net/Articles/531114/.</p>
+<p>Pollock, Antonia. <em>Virtualization vs. Containerization</em>. 16 Sept. 2020, <a href="http://www.liquidweb.com/kb/virtualization-vs-containerization/">www.liquidweb.com/kb/virtualization-vs-containerization/</a>.</p>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stefantobler" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-docker-not">What is Docker not?</a></li>
+    <li><a href="#what-is-docker">What is Docker?</a></li>
+    <li><a href="#why-docker">Why Docker?</a></li>
+    <li><a href="#how-is-docker-implemented">How is Docker Implemented?</a></li>
+    <li><a href="#hands-on-with-docker">Hands-on with Docker</a>
+      <ul>
+        <li><a href="#how-to-install-docker">How to Install Docker</a></li>
+        <li><a href="#using-docker">Using Docker</a></li>
+        <li><a href="#deploying-a-docker-container">Deploying a Docker Container</a></li>
+      </ul>
+    </li>
+    <li><a href="#containerization-vs-virtualization">Containerization vs. Virtualization</a></li>
+    <li><a href="#attribution">Attribution</a>
+      <ul>
+        <li><a href="#works-cited">Works Cited</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
