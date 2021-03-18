@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>https://stefantobler.com/posts/ctf/</loc>
+    <lastmod>2021-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://stefantobler.com/posts/misc/</loc>
     <lastmod>2020-11-10T00:00:00+00:00</lastmod>
   </url>
@@ -65,6 +70,31 @@
   <url>
     <loc>https://stefantobler.com/tags/windows/</loc>
     <lastmod>2021-03-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/cryptography/</loc>
+    <lastmod>2021-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/categories/ctf/</loc>
+    <lastmod>2021-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/posts/ctf/nahamcon_2021/</loc>
+    <lastmod>2021-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/osint/</loc>
+    <lastmod>2021-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://stefantobler.com/tags/web-security/</loc>
+    <lastmod>2021-03-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -304,11 +334,6 @@
   
   <url>
     <loc>https://stefantobler.com/tags/iot/</loc>
-    <lastmod>2020-03-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://stefantobler.com/tags/osint/</loc>
     <lastmod>2020-03-23T00:00:00+00:00</lastmod>
   </url>
   

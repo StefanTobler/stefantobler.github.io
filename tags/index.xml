@@ -39,6 +39,33 @@
     </item>
     
     <item>
+      <title>cryptography</title>
+      <link>https://stefantobler.com/tags/cryptography/</link>
+      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/tags/cryptography/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>osint</title>
+      <link>https://stefantobler.com/tags/osint/</link>
+      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/tags/osint/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web-security</title>
+      <link>https://stefantobler.com/tags/web-security/</link>
+      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://stefantobler.com/tags/web-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>containerization</title>
       <link>https://stefantobler.com/tags/containerization/</link>
       <pubDate>Tue, 10 Nov 2020 00:00:00 +0000</pubDate>
@@ -350,15 +377,6 @@
       <pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://stefantobler.com/tags/iot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>osint</title>
-      <link>https://stefantobler.com/tags/osint/</link>
-      <pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://stefantobler.com/tags/osint/</guid>
       <description></description>
     </item>
     
