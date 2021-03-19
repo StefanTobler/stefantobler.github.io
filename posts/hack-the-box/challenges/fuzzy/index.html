@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Fuzzy challenged the user on the basics of fuzzing and taught me how to use wfuzz and other techniques to learn information about my target machine. I suggest anyone who would like to learn about fuzzing take on this challenge.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Fuzzy" />
+<meta property="og:description" content="Fuzzy challenged the user on the basics of fuzzing and taught me how to use wfuzz and other techniques to learn information about my target machine. I suggest anyone who would like to learn about fuzzing take on this challenge." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://stefantobler.com/posts/hack-the-box/challenges/fuzzy/" />
+<meta property="article:published_time" content="2020-05-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-13T00:00:00+00:00" />
+<title>Fuzzy | Stefan Tobler</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6cd8553a6854f4812343f0f0c8baca31271e686434f381fbe3c7226f66639176.css" integrity="sha256-bNhVOmhU9IEjQ/DwyLrKMSceaGQ084H748cib2ZjkXY=">
+<script defer src="/en.search.min.24f8f40c2756168e54d3c52c27896d20a0bdf40f75067c6dc1577730a766787f.js" integrity="sha256-JPj0DCdWFo5U08UsJ4ltIKC99A91BnxtwVd3MKdmeH8="></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158607018-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+<link rel="stylesheet" href="/assets/css/posts.css" />
+
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/images/logo.png" alt="Logo" /><span>Stefan Tobler</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+<span><a href='https://stefantobler.com/posts/'>Recent Posts</a></span>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/hack-the-box">Hack the Box</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/challenges">Challenges</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/challenges/fuzzy/" class="active">Fuzzy</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/archetype/" class="">Archetype</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/magic/" class="">Magic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/remote/" class="">Remote</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/traceback/" class="">Traceback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/admirer/" class="">Admirer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/try-hack-me">Try Hack Me</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/basic-pentesting/" class="">Basic Pentesting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/blue/" class="">Blue</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/ice/" class="">Ice</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/vulnversity/" class="">Vulnversity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/shodan.io/" class="">Shodan.io</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/capture-the-flag">Capture the Flag</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/ctf/nahamcon_2021/" class="">Nahamcon 2021 CTF</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/misc">Misc</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/misc/docker-containerization-vs-virtualization/" class="">Docker - Containerization vs. Virtualization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/misc/virtualbox-tutorial/" class="">How to Install Kali Linux on VirtualBox</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Fuzzy</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#walkthrough">Walkthrough</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/hack-the-box/challenges/fuzzy/">Fuzzy</a>
+  </h1>
+  
+  
+  <div>
+    
+      <a href="/categories/hack-the-box/">hack-the-box</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/fuzzing/">fuzzing</a>, 
+      <a href="/tags/enumeration/">enumeration</a>
+  </div>
+  
+
+
+  <p><p>Fuzzy challenged the user on the basics of fuzzing and taught me how to use wfuzz and other techniques to learn information about my target machine. I suggest anyone who would like to learn about fuzzing take on this challenge.</p>
+<h2 id="tools">
+  Tools
+  <a class="anchor" href="#tools">#</a>
+</h2>
+<ul>
+<li>gobuster</li>
+<li>wfuzz</li>
+</ul>
+<h2 id="walkthrough">
+  Walkthrough
+  <a class="anchor" href="#walkthrough">#</a>
+</h2>
+<p>First thing I am going to try and do is navigate to <code>robots.txt</code>, but it looks like it is not there. Next we are going to run <code>gobuster</code> to figure out if there are any other server urls that we can navigate to and exploit. Dirbuster found a directory called <code>/api/</code>.</p>
+<p>Next we are going to do another scan in the api directory using the command <code>gobuster dir -u http://docker.hackthebox.eu:31883/api -w /usr/share/wordlists/dirb/common.txt -x .php,.html,.htm,.js</code>. I used the <code>-x</code> argument so specify the extensions I wanted to search for. You can see the results in <code>dirb_file_out.txt</code>. We found the file <code>action.php</code> and when we try to visit it in the browser it says that there needs to be a parameter.</p>
+<p>To find the hidden parameter we can use <code>wfuzz</code> to fuzz the parameter name and find out what the request returns. Let&rsquo;s run the command <code>wfuzz -c  -w /usr/share/dirb/wordlists/big.txt http://docker.hackthebox.eu:31883/api/action.php?FUZZ=test</code> to start fuzzing the parameter names. Most of our responses are returning 4 words. If we user <code>grep -v</code> we can filter out all the responses that contain 4 words and maybe find the parameter name that returns something else. Run the command <code>cat paramfinder_out.txt | grep -v &quot;4 W&quot;</code> and we see that <code>reset</code> returns something with 5 words. Let&rsquo;s navigate to the web browser and see what is being returned. If you take a look at the web browser it seems that we are entering the wrong account ID. Well that is something. It looks like we found the parameter for this <code>action.php</code> file. Now to find our user.</p>
+<p>In order to find the user we are going to use another <code>wfuzz</code> scan. Who would have thought that a challenge named &ldquo;fuzzy&rdquo; would require this much fuzzing. We can fuzz the user ID by using the <code>range</code> argument for <code>wfuzz</code>. You can read about it <a href="https://wfuzz.readthedocs.io/en/latest/user/basicusage.html">here</a>. Let&rsquo;s use the command <code>wfuzz -z range,0-100 http://docker.hackthebox.eu:31883/api/action.php?reset=FUZZ &gt; digitfuzz.txt</code>. These results can be found in <code>digitfuzz.txt</code>. Again we notice that most of the parameter values return 5 words so let&rsquo;s try an <code>grep -v</code> again to filter out all the 5 word returns. Using the command <code>cat digitfuzz.txt | grep -v &quot;5 W&quot;</code> returns to us the user ID of the user who&rsquo;s reset was successful. Now if we go to the web browser and navigate to <code>http://docker.hackthebox.eu:31883/api/action.php?reset=[ID]</code> replacing <code>[ID]</code> with the ID that was found by our <code>wfuzz</code> scan you should be able to see the flag.</p>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stefantobler" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#walkthrough">Walkthrough</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

