@@ -1,6 +1,13 @@
 name: Update analytics snapshot
 
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/update-analytics.yml
+      - analytics-core.js
+      - scripts/update-analytics.mjs
   schedule:
     - cron: "17 08 * * *"
   workflow_dispatch:

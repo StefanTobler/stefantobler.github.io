@@ -2,12 +2,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const [homeHtml, analyticsHtml, analyticsJavaScript, stylesheet, updater] = await Promise.all([
+const [homeHtml, analyticsHtml, analyticsJavaScript, stylesheet, updater, workflow] = await Promise.all([
   readFile(new URL("../index.html", import.meta.url), "utf8"),
   readFile(new URL("../analytics/index.html", import.meta.url), "utf8"),
   readFile(new URL("../analytics/analytics.js", import.meta.url), "utf8"),
   readFile(new URL("../site.css", import.meta.url), "utf8"),
   readFile(new URL("../scripts/update-analytics.mjs", import.meta.url), "utf8"),
+  readFile(new URL("../.github/workflows/update-analytics.yml", import.meta.url), "utf8"),
 ]);
 
 test("homepage keeps analytics centered and removes the redundant links section", () => {
@@ -36,6 +37,8 @@ test("scheduled updater discovers history limits and merges append-only data", (
   assert.match(updater, /notOlderThan/);
   assert.match(updater, /mergeDailyHistory/);
   assert.match(updater, /retention: "append-only"/);
+  assert.match(workflow, /cron: "17 08 \* \* \*"/);
+  assert.match(workflow, /push:[\s\S]*scripts\/update-analytics\.mjs/);
 });
 
 test("mobile project counts stay together instead of wrapping word by word", () => {
