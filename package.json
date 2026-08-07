@@ -1,0 +1,15 @@
+{
+  "name": "stefantobler-personal-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "check": "npm run build"
+  },
+  "devDependencies": {
+    "@rollup/rollup-darwin-arm64": "^4.62.4",
+    "vite": "^7.1.1"
+  }
+}
