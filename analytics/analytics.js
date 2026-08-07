@@ -4,13 +4,14 @@ import {
   RANGE_OPTIONS,
   formatChange,
   formatViews,
+  getChartDateLabels,
   getChartGeometry,
   getDailyComparison,
   getRange,
   getSite,
   normalizeRange,
   sumViews,
-} from "/analytics-core.js?v=2";
+} from "/analytics-core.js?v=3";
 
 const DATA_URL = "/data/analytics.json";
 const CHART_WIDTH = 720;
@@ -58,6 +59,7 @@ function createChart(site, rangeKey) {
   const title = `${site.label} page views for ${describeRange(rangeKey, range.length)}`;
   const plotRight = CHART_WIDTH - CHART_INSETS.right;
   const plotBottom = CHART_PLOT_HEIGHT - CHART_INSETS.bottom;
+  const dateLabels = getChartDateLabels(range);
 
   return `
     <div class="chart-frame" data-chart-frame="${site.domain}">
@@ -76,8 +78,8 @@ function createChart(site, rangeKey) {
         <circle class="chart-hover-point" cx="0" cy="0" r="4" visibility="hidden"></circle>
         <text class="chart-axis-label" x="0" y="13">${formatViews(geometry.max)}</text>
         <text class="chart-axis-label" x="0" y="176">0</text>
-        <text class="chart-axis-label" x="${CHART_INSETS.left}" y="204">${formatDate(range.at(0).date)}</text>
-        <text class="chart-axis-label" x="${plotRight}" y="204" text-anchor="end">${formatDate(range.at(-1).date)}</text>
+        <text class="chart-axis-label" x="${CHART_INSETS.left}" y="204">${dateLabels.start}</text>
+        <text class="chart-axis-label" x="${plotRight}" y="204" text-anchor="end">${dateLabels.end}</text>
       </svg>
       <div class="chart-tooltip" role="status" hidden></div>
     </div>`;

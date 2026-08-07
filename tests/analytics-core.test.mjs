@@ -5,6 +5,7 @@ import {
   DOMAIN_ORDER,
   PROJECT_DOMAINS,
   formatChange,
+  getChartDateLabels,
   getChartGeometry,
   getDailyComparison,
   getFirstCompleteUtcDate,
@@ -98,4 +99,19 @@ test("creates bounded chart geometry for an empty or populated series", () => {
   assert.equal(asymmetric.points.at(0).x, 20);
   assert.equal(asymmetric.points.at(-1).x, 94);
   assert.ok(asymmetric.points.every((point) => point.y >= 4 && point.y <= 42));
+});
+
+test("shows years on chart endpoints only when the range crosses a year boundary", () => {
+  assert.deepEqual(
+    getChartDateLabels([
+      { date: "2025-08-08", views: 1 },
+      { date: "2026-08-06", views: 2 },
+    ]),
+    { start: "Aug 8, 2025", end: "Aug 6, 2026" },
+  );
+
+  assert.deepEqual(getChartDateLabels(site.daily), {
+    start: "Aug 3",
+    end: "Aug 6",
+  });
 });

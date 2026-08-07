@@ -12,6 +12,17 @@ export const RANGE_OPTIONS = ["7", "14", "30", "all"];
 export const DEFAULT_RANGE = "30";
 
 const numberFormatter = new Intl.NumberFormat("en-US");
+const shortDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});
+const datedYearFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
 export function formatViews(value) {
   return numberFormatter.format(Math.max(0, Number(value) || 0));
@@ -75,6 +86,24 @@ export function getRange(site, range) {
 
 export function sumViews(points) {
   return points.reduce((total, point) => total + Number(point.views || 0), 0);
+}
+
+export function getChartDateLabels(points = []) {
+  const startDate = points.at(0)?.date;
+  const endDate = points.at(-1)?.date;
+
+  if (!startDate || !endDate) {
+    return { start: "", end: "" };
+  }
+
+  const formatter = startDate.slice(0, 4) === endDate.slice(0, 4)
+    ? shortDateFormatter
+    : datedYearFormatter;
+
+  return {
+    start: formatter.format(new Date(`${startDate}T00:00:00Z`)),
+    end: formatter.format(new Date(`${endDate}T00:00:00Z`)),
+  };
 }
 
 export function mergeDailyHistory(existing = [], incoming = []) {
