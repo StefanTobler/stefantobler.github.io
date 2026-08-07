@@ -208,8 +208,24 @@ h1 {
   padding-bottom: 1.35rem;
 }
 
-#work p {
-  max-width: 35rem;
+.role-timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.role-timeline li {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(9rem, 0.75fr) 1.4fr;
+  gap: 1.4rem;
+}
+
+.role-timeline li + li {
+  margin-top: 0.48rem;
+}
+
+.role-timeline time {
+  color: #555559;
 }
 
 .focus-list {
@@ -395,6 +411,15 @@ h1 {
     border-top: 0;
     padding-top: 0;
     padding-bottom: 1.7rem;
+  }
+
+  .role-timeline li {
+    grid-template-columns: 5.75rem 1fr;
+    gap: 0.1rem 1rem;
+  }
+
+  .role-timeline li > :last-child {
+    grid-column: 2;
   }
 
   .project-heading {
