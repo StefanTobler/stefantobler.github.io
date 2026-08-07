@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import {
   DOMAIN_ORDER,
   PERSONAL_DOMAIN,
+  getFirstCompleteUtcDate,
   mergeDailyHistory,
   sumViews,
 } from "../analytics-core.js";
@@ -140,10 +141,7 @@ async function getDatasetLimits(zoneTags) {
   }
 
   return {
-    historyDays: Math.max(
-      1,
-      Math.floor(Math.min(...limits.map((limit) => limit.notOlderThan)) / DAY_SECONDS),
-    ),
+    notOlderThanSeconds: Math.min(...limits.map((limit) => limit.notOlderThan)),
     maxDaysPerQuery: Math.max(
       1,
       Math.min(
@@ -211,12 +209,15 @@ try {
 } catch (error) {
   console.warn(`Could not read Cloudflare dataset limits; using a ${FALLBACK_HISTORY_DAYS}-day query window.`);
   limits = {
-    historyDays: FALLBACK_HISTORY_DAYS,
+    notOlderThanSeconds: FALLBACK_HISTORY_DAYS * DAY_SECONDS,
     maxDaysPerQuery: FALLBACK_HISTORY_DAYS,
   };
 }
 
-const availableStart = offsetDate(end, -limits.historyDays);
+const retentionCutoff = new Date(
+  today.getTime() - limits.notOlderThanSeconds * 1000,
+);
+const availableStart = getFirstCompleteUtcDate(retentionCutoff);
 const availableDates = createDateRange(availableStart, end);
 const refreshStart = offsetDate(end, -REFRESH_OVERLAP_DAYS);
 

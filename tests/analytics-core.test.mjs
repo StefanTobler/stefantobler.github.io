@@ -7,6 +7,7 @@ import {
   formatChange,
   getChartGeometry,
   getDailyComparison,
+  getFirstCompleteUtcDate,
   getRange,
   mergeDailyHistory,
   sumViews,
@@ -65,6 +66,17 @@ test("retains old daily history while newer captures replace overlapping dates",
     { date: "2026-08-06", views: 12 },
     { date: "2026-08-07", views: 14 },
   ]);
+});
+
+test("starts backfills at the first complete UTC day inside Cloudflare retention", () => {
+  assert.equal(
+    getFirstCompleteUtcDate("2025-08-07T06:44:07Z").toISOString(),
+    "2025-08-08T00:00:00.000Z",
+  );
+  assert.equal(
+    getFirstCompleteUtcDate("2025-08-08T00:00:00Z").toISOString(),
+    "2025-08-08T00:00:00.000Z",
+  );
 });
 
 test("creates bounded chart geometry for an empty or populated series", () => {

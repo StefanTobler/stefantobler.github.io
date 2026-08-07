@@ -94,6 +94,20 @@ export function mergeDailyHistory(existing = [], incoming = []) {
   return [...byDate.values()].sort((left, right) => left.date.localeCompare(right.date));
 }
 
+export function getFirstCompleteUtcDate(cutoff) {
+  const date = new Date(cutoff);
+  const midnight = new Date(
+    Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()),
+  );
+
+  if (date.getTime() === midnight.getTime()) {
+    return midnight;
+  }
+
+  midnight.setUTCDate(midnight.getUTCDate() + 1);
+  return midnight;
+}
+
 function normalizeInsets(inset) {
   if (typeof inset === "number") {
     return { top: inset, right: inset, bottom: inset, left: inset };
