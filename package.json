@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "check": "npm run build"
+    "analytics:update": "node scripts/update-analytics.mjs",
+    "test": "node --test",
+    "check": "npm test && npm run build"
   },
   "devDependencies": {
     "@rollup/rollup-darwin-arm64": "^4.62.4",

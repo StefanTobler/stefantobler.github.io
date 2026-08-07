@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Simple, privacy-first page-view analytics for Stefan Tobler's website and projects."
+    />
+    <meta name="theme-color" content="#f7f7f5" />
+    <title>Analytics - Stefan Tobler</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/site.css" />
+  </head>
+  <body class="analytics-page">
+    <a class="skip-link" href="#analytics">Skip to analytics</a>
+
+    <div class="page-shell">
+      <header class="site-header" aria-label="Site header">
+        <p class="identity">
+          <a href="/">Stefan Tobler</a>
+          <span aria-hidden="true">/</span>
+          <span>Public Analytics</span>
+        </p>
+
+        <nav class="external-links" aria-label="Analytics navigation">
+          <a href="/">Back to stefantobler.com</a>
+        </nav>
+      </header>
+
+      <main class="analytics-main" id="analytics">
+        <section class="page-row analytics-intro-row" aria-labelledby="analytics-heading">
+          <div class="section-index">
+            <span>01</span>
+            <a href="#analytics-heading">Overview</a>
+          </div>
+
+          <div class="section-body analytics-intro-body">
+            <h1 id="analytics-heading">A quiet look at what people are viewing.</h1>
+            <p>
+              Page views are successful HTML responses recorded at Cloudflare's edge.
+              No third-party tracking script, cookies, or visitor profiles are used here.
+            </p>
+          </div>
+
+          <aside class="metadata analytics-metadata" aria-label="Analytics details">
+            <dl>
+              <div>
+                <dt>Updated</dt>
+                <dd data-analytics-updated>Loading</dd>
+              </div>
+              <div>
+                <dt>Complete through</dt>
+                <dd data-analytics-through>Loading</dd>
+              </div>
+              <div>
+                <dt>Timezone</dt>
+                <dd>UTC</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+
+        <section class="page-row analytics-controls-row" aria-labelledby="filters-label">
+          <div class="section-index">
+            <span>02</span>
+            <a href="#filters" id="filters-label">Filters</a>
+          </div>
+
+          <div class="section-body analytics-controls" id="filters">
+            <fieldset class="range-filter">
+              <legend>Time range</legend>
+              <div class="filter-buttons">
+                <button type="button" data-range="7" aria-pressed="false">7 days</button>
+                <button type="button" data-range="14" aria-pressed="false">14 days</button>
+                <button type="button" data-range="30" aria-pressed="true">30 days</button>
+              </div>
+            </fieldset>
+
+            <label class="domain-filter">
+              <span>Domain</span>
+              <select data-domain-filter>
+                <option value="all">All domains</option>
+                <option value="stefantobler.com">stefantobler.com</option>
+                <option value="trphy.dev">trphy.dev</option>
+                <option value="apartments.fyi">apartments.fyi</option>
+                <option value="wikiwander.app">wikiwander.app</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="right-gutter" aria-hidden="true"></div>
+        </section>
+
+        <section class="page-row analytics-results-row" aria-labelledby="traffic-label">
+          <div class="section-index">
+            <span>03</span>
+            <a href="#traffic" id="traffic-label">Traffic</a>
+          </div>
+
+          <div class="section-body analytics-content" id="traffic" data-analytics-charts>
+            <p class="analytics-loading">Loading Cloudflare snapshot...</p>
+          </div>
+
+          <div class="right-gutter" aria-hidden="true"></div>
+        </section>
+
+        <noscript>
+          <p class="analytics-error">JavaScript is required to draw the analytics charts.</p>
+        </noscript>
+      </main>
+
+      <footer class="site-footer">
+        <p>&copy; 2026 Stefan Tobler</p>
+        <div class="footer-links">
+          <p>Source: Cloudflare</p>
+          <p><a href="/">Back home</a></p>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/analytics/analytics.js"></script>
+  </body>
+</html>
