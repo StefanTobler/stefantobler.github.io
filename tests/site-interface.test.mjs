@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const [homeHtml, analyticsHtml, analyticsJavaScript, stylesheet, updater, workflow] = await Promise.all([
+const [homeHtml, homeJavaScript, analyticsHtml, analyticsJavaScript, stylesheet, updater, workflow] = await Promise.all([
   readFile(new URL("../index.html", import.meta.url), "utf8"),
+  readFile(new URL("../site.js", import.meta.url), "utf8"),
   readFile(new URL("../analytics/index.html", import.meta.url), "utf8"),
   readFile(new URL("../analytics/analytics.js", import.meta.url), "utf8"),
   readFile(new URL("../site.css", import.meta.url), "utf8"),
@@ -18,6 +19,12 @@ test("homepage keeps analytics centered and removes the redundant links section"
   assert.match(stylesheet, /\.home-footer\s*{[\s\S]*grid-template-columns:/);
 });
 
+test("homepage footer reports all captured personal-site views", () => {
+  assert.match(homeJavaScript, /sumViews\(site\.daily\)/);
+  assert.doesNotMatch(homeJavaScript, /FOOTER_RANGE/);
+  assert.doesNotMatch(homeJavaScript, /page views \/ \$\{points\.length\} days/);
+});
+
 test("analytics filters use site-styled buttons and expose all captured history", () => {
   assert.doesNotMatch(analyticsHtml, /<select/);
   assert.match(analyticsHtml, /data-range="all"/);
@@ -30,6 +37,11 @@ test("analytics charts are stroke-only with fixed axis labels and a hover toolti
   assert.doesNotMatch(analyticsJavaScript, /chart-x-labels/);
   assert.match(analyticsJavaScript, /class="chart-tooltip"/);
   assert.match(analyticsJavaScript, /pointermove/);
+});
+
+test("daily trend percentages explain their comparison on hover", () => {
+  assert.match(homeJavaScript, /trend\.title = "day \/ day change"/);
+  assert.match(analyticsJavaScript, /title="day \/ day change"/);
 });
 
 test("scheduled updater discovers history limits and merges append-only data", () => {

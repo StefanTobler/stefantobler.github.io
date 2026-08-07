@@ -103,7 +103,7 @@ function createCard(site, data, rangeKey) {
         <dl class="analytics-summary">
           <div>
             <dt>Yesterday</dt>
-            <dd>${formatViews(comparison.current)} <span class="analytics-trend" data-direction="${comparison.direction}">${trend}</span></dd>
+            <dd>${formatViews(comparison.current)} <span class="analytics-trend" data-direction="${comparison.direction}" title="day / day change">${trend}</span></dd>
           </div>
           <div>
             <dt>${totalLabel}</dt>

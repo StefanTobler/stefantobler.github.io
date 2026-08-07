@@ -4,13 +4,11 @@ import {
   formatChange,
   formatViews,
   getDailyComparison,
-  getRange,
   getSite,
   sumViews,
-} from "/analytics-core.js?v=2";
+} from "/analytics-core.js?v=3";
 
 const DATA_URL = "/data/analytics.json";
-const FOOTER_RANGE = "30";
 
 async function loadAnalytics() {
   const response = await fetch(DATA_URL, { cache: "no-cache" });
@@ -27,10 +25,12 @@ function hydrateFooter(data) {
     return;
   }
 
-  const points = getRange(site, FOOTER_RANGE);
-  const total = sumViews(points);
-  link.textContent = `${formatViews(total)} page views / ${points.length} days`;
-  link.title = `Cloudflare page views from ${points.at(0).date} through ${data.period.completeThrough}`;
+  const total = sumViews(site.daily);
+  link.textContent = `${formatViews(total)} page views`;
+
+  if (site.daily.length) {
+    link.title = `Cloudflare page views captured from ${site.daily.at(0).date} through ${data.period.completeThrough}`;
+  }
 }
 
 function hydrateProjectViews(data) {
@@ -49,6 +49,7 @@ function hydrateProjectViews(data) {
     count.textContent = `${formatViews(comparison.current)} views yesterday`;
     trend.textContent = formatChange(comparison);
     trend.dataset.direction = comparison.direction;
+    trend.title = "day / day change";
     root.setAttribute(
       "aria-label",
       `${formatViews(comparison.current)} page views yesterday for ${domain}, ${Math.abs(comparison.percent)} percent ${comparison.direction === "up" ? "up" : comparison.direction === "down" ? "down" : "unchanged"} from the prior day. Open analytics.`,
