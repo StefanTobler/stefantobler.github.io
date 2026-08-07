@@ -8,6 +8,7 @@ import {
   getChartGeometry,
   getDailyComparison,
   getRange,
+  mergeDailyHistory,
   sumViews,
 } from "../analytics-core.js";
 
@@ -47,6 +48,23 @@ test("uses the matching diagonal arrow for each trend direction", () => {
 test("filters a range and sums its views", () => {
   assert.deepEqual(getRange(site, 7), site.daily);
   assert.equal(sumViews(getRange(site, 30)), 35);
+  assert.deepEqual(getRange(site, "all"), site.daily);
+});
+
+test("retains old daily history while newer captures replace overlapping dates", () => {
+  const incoming = [
+    { date: "2026-08-05", views: 9 },
+    { date: "2026-08-06", views: 12 },
+    { date: "2026-08-07", views: 14 },
+  ];
+
+  assert.deepEqual(mergeDailyHistory(site.daily, incoming), [
+    { date: "2026-08-03", views: 5 },
+    { date: "2026-08-04", views: 10 },
+    { date: "2026-08-05", views: 9 },
+    { date: "2026-08-06", views: 12 },
+    { date: "2026-08-07", views: 14 },
+  ]);
 });
 
 test("creates bounded chart geometry for an empty or populated series", () => {
@@ -58,4 +76,14 @@ test("creates bounded chart geometry for an empty or populated series", () => {
   assert.equal(chart.max, 12);
   assert.ok(chart.points.every((point) => point.x >= 5 && point.x <= 95));
   assert.ok(chart.points.every((point) => point.y >= 5 && point.y <= 45));
+
+  const asymmetric = getChartGeometry(site.daily, 100, 50, {
+    top: 4,
+    right: 6,
+    bottom: 8,
+    left: 20,
+  });
+  assert.equal(asymmetric.points.at(0).x, 20);
+  assert.equal(asymmetric.points.at(-1).x, 94);
+  assert.ok(asymmetric.points.every((point) => point.y >= 4 && point.y <= 42));
 });

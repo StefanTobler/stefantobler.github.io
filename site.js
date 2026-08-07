@@ -4,10 +4,13 @@ import {
   formatChange,
   formatViews,
   getDailyComparison,
+  getRange,
   getSite,
-} from "/analytics-core.js";
+  sumViews,
+} from "/analytics-core.js?v=2";
 
 const DATA_URL = "/data/analytics.json";
+const FOOTER_RANGE = "30";
 
 async function loadAnalytics() {
   const response = await fetch(DATA_URL, { cache: "no-cache" });
@@ -24,8 +27,10 @@ function hydrateFooter(data) {
     return;
   }
 
-  link.textContent = `${formatViews(site.periodViews)} page views / ${data.period.days} days`;
-  link.title = `Cloudflare page views from ${data.period.start} through ${data.period.completeThrough}`;
+  const points = getRange(site, FOOTER_RANGE);
+  const total = sumViews(points);
+  link.textContent = `${formatViews(total)} page views / ${points.length} days`;
+  link.title = `Cloudflare page views from ${points.at(0).date} through ${data.period.completeThrough}`;
 }
 
 function hydrateProjectViews(data) {

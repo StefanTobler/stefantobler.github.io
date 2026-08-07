@@ -16,9 +16,9 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="/site.css" />
+    <link rel="stylesheet" href="/site.css?v=2" />
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#intro">Skip to content</a>
 
     <div class="page-shell">
@@ -186,30 +186,14 @@
           <div class="right-gutter" aria-hidden="true"></div>
         </section>
 
-        <section class="page-row links-row" id="links" aria-labelledby="links-label">
-          <div class="section-index">
-            <span>05</span>
-            <a href="#links" id="links-label">Links</a>
-          </div>
-          <nav class="section-body link-list" aria-label="More links">
-            <a href="https://www.linkedin.com/in/stefantobler/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <span aria-hidden="true">/</span>
-            <a href="https://github.com/stefantobler" target="_blank" rel="noreferrer">GitHub</a>
-            <span aria-hidden="true">/</span>
-            <a href="mailto:hello@stefantobler.com">Email</a>
-          </nav>
-          <div class="right-gutter" aria-hidden="true"></div>
-        </section>
       </main>
 
-      <footer class="site-footer">
+      <footer class="site-footer home-footer">
         <p>&copy; 2026 Stefan Tobler</p>
-        <div class="footer-links">
-          <p>Archive: <a href="https://archive.stefantobler.com">archive.stefantobler.com</a></p>
-          <p><a href="/analytics/" data-site-view-total>View analytics</a></p>
-        </div>
+        <p class="footer-analytics"><a href="/analytics/" data-site-view-total>View analytics</a></p>
+        <p class="footer-archive">Archive: <a href="https://archive.stefantobler.com">archive.stefantobler.com</a></p>
       </footer>
     </div>
-    <script type="module" src="/site.js"></script>
+    <script type="module" src="/site.js?v=2"></script>
   </body>
 </html>

@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="stylesheet" href="/site.css" />
+    <link rel="stylesheet" href="/site.css?v=2" />
   </head>
   <body class="analytics-page">
     <a class="skip-link" href="#analytics">Skip to analytics</a>
@@ -40,10 +40,7 @@
 
           <div class="section-body analytics-intro-body">
             <h1 id="analytics-heading">A quiet look at what people are viewing.</h1>
-            <p>
-              Page views are successful HTML responses recorded at Cloudflare's edge.
-              No third-party tracking script, cookies, or visitor profiles are used here.
-            </p>
+            <p>Aggregate page views from Cloudflare. No cookies or visitor profiles.</p>
           </div>
 
           <aside class="metadata analytics-metadata" aria-label="Analytics details">
@@ -71,25 +68,33 @@
           </div>
 
           <div class="section-body analytics-controls" id="filters">
-            <fieldset class="range-filter">
-              <legend>Time range</legend>
-              <div class="filter-buttons">
+            <div class="filter-group range-filter" role="group" aria-labelledby="range-filter-label">
+              <p class="filter-label" id="range-filter-label">Time range</p>
+              <div class="filter-options">
                 <button type="button" data-range="7" aria-pressed="false">7 days</button>
+                <span aria-hidden="true">/</span>
                 <button type="button" data-range="14" aria-pressed="false">14 days</button>
+                <span aria-hidden="true">/</span>
                 <button type="button" data-range="30" aria-pressed="true">30 days</button>
+                <span aria-hidden="true">/</span>
+                <button type="button" data-range="all" aria-pressed="false">All</button>
               </div>
-            </fieldset>
+            </div>
 
-            <label class="domain-filter">
-              <span>Domain</span>
-              <select data-domain-filter>
-                <option value="all">All domains</option>
-                <option value="stefantobler.com">stefantobler.com</option>
-                <option value="trphy.dev">trphy.dev</option>
-                <option value="apartments.fyi">apartments.fyi</option>
-                <option value="wikiwander.app">wikiwander.app</option>
-              </select>
-            </label>
+            <div class="filter-group domain-filter" role="group" aria-labelledby="domain-filter-label">
+              <p class="filter-label" id="domain-filter-label">Domain</p>
+              <div class="filter-options domain-options">
+                <button type="button" data-domain="all" aria-pressed="true">All</button>
+                <span aria-hidden="true">/</span>
+                <button type="button" data-domain="stefantobler.com" aria-pressed="false">stefantobler.com</button>
+                <span aria-hidden="true">/</span>
+                <button type="button" data-domain="trphy.dev" aria-pressed="false">trphy.dev</button>
+                <span aria-hidden="true">/</span>
+                <button type="button" data-domain="apartments.fyi" aria-pressed="false">apartments.fyi</button>
+                <span aria-hidden="true">/</span>
+                <button type="button" data-domain="wikiwander.app" aria-pressed="false">wikiwander.app</button>
+              </div>
+            </div>
           </div>
 
           <div class="right-gutter" aria-hidden="true"></div>
@@ -122,6 +127,6 @@
       </footer>
     </div>
 
-    <script type="module" src="/analytics/analytics.js"></script>
+    <script type="module" src="/analytics/analytics.js?v=2"></script>
   </body>
 </html>
