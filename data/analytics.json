@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-19T15:41:16.332Z",
+  "generatedAt": "2026-10-20T13:36:44.253Z",
   "source": "Cloudflare GraphQL Analytics API",
   "metric": "pageViews",
   "retention": "append-only",
   "period": {
-    "days": 437,
+    "days": 438,
     "start": "2025-08-08",
-    "endExclusive": "2026-10-19",
-    "completeThrough": "2026-10-18",
+    "endExclusive": "2026-10-20",
+    "completeThrough": "2026-10-19",
     "timezone": "UTC"
   },
   "sites": [
@@ -16,8 +16,8 @@
       "domain": "stefantobler.com",
       "label": "Stefan Tobler",
       "kind": "personal",
-      "historyViews": 61455,
-      "trailing30Views": 7431,
+      "historyViews": 61621,
+      "trailing30Views": 7408,
       "daily": [
         {
           "date": "2025-08-08",
@@ -1766,6 +1766,10 @@
         {
           "date": "2026-10-18",
           "views": 258
+        },
+        {
+          "date": "2026-10-19",
+          "views": 166
         }
       ]
     },
@@ -1773,8 +1777,8 @@
       "domain": "trphy.dev",
       "label": "TRPHY",
       "kind": "project",
-      "historyViews": 110865,
-      "trailing30Views": 18020,
+      "historyViews": 112313,
+      "trailing30Views": 19367,
       "daily": [
         {
           "date": "2025-08-08",
@@ -3523,6 +3527,10 @@
         {
           "date": "2026-10-18",
           "views": 94
+        },
+        {
+          "date": "2026-10-19",
+          "views": 1448
         }
       ]
     },
@@ -3530,8 +3538,8 @@
       "domain": "apartments.fyi",
       "label": "apartments.fyi",
       "kind": "project",
-      "historyViews": 18966,
-      "trailing30Views": 4273,
+      "historyViews": 19063,
+      "trailing30Views": 4223,
       "daily": [
         {
           "date": "2025-08-08",
@@ -5280,6 +5288,10 @@
         {
           "date": "2026-10-18",
           "views": 233
+        },
+        {
+          "date": "2026-10-19",
+          "views": 97
         }
       ]
     },
@@ -5287,8 +5299,8 @@
       "domain": "wikiwander.app",
       "label": "Wiki Wander",
       "kind": "project",
-      "historyViews": 11477,
-      "trailing30Views": 3628,
+      "historyViews": 11588,
+      "trailing30Views": 3591,
       "daily": [
         {
           "date": "2025-08-08",
@@ -7037,6 +7049,10 @@
         {
           "date": "2026-10-18",
           "views": 124
+        },
+        {
+          "date": "2026-10-19",
+          "views": 111
         }
       ]
     }
